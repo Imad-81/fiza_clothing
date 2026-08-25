@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = await fetchProductById(productId);
 
   if (!product) {
-    return { title: { absolute: "Product Not Found | Aarovi" } };
+    return { title: { absolute: "Product Not Found | House of Aarovi" } };
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: product.name,
     description: `${product.name} — ₹${product.price.toLocaleString("en-IN")}. ${product.description}`,
     openGraph: {
-      title: `${product.name} | Aarovi`,
+      title: `${product.name} | House of Aarovi`,
       description: `${product.name} — ₹${product.price.toLocaleString("en-IN")}. ${product.description}`,
       images: product.images.length > 0 && product.images[0]
         ? [product.images[0].startsWith("http") ? product.images[0] : `${siteUrl}${product.images[0]}`]
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${product.name} | Aarovi`,
+      title: `${product.name} | House of Aarovi`,
       description: `${product.name} — ₹${product.price.toLocaleString("en-IN")}.`,
     },
     alternates: {

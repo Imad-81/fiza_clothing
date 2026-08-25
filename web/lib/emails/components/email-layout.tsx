@@ -55,7 +55,7 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
                 letterSpacing: "0.04em",
               }}
             >
-              AAROVI
+              HOUSE OF AAROVI
             </Text>
           </Section>
 
@@ -85,7 +85,7 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
                 color: `${BRAND_TEXT}80`,
               }}
             >
-              Aarovi · Handcrafted essentials. You received this email because
+              House of Aarovi · Handcrafted essentials. You received this email because
               you placed an order with us. If you didn’t, please reply to this
               email so we can help. Visit us at{" "}
               <Link

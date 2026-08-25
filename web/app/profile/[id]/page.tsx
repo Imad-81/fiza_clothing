@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   return {
     title: "My Profile",
-    description: "Manage your Aarovi account, personal information, and saved addresses.",
+    description: "Manage your House of Aarovi account, personal information, and saved addresses.",
     robots: { index: false, follow: false },
     alternates: {
       canonical: `/profile/${id}`,

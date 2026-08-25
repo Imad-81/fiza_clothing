@@ -4,11 +4,11 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Support",
   description:
-    "Get help with your Aarovi orders. Find FAQs, track your order, or contact our support team.",
+    "Get help with your House of Aarovi orders. Find FAQs, track your order, or contact our support team.",
   openGraph: {
-    title: "Support | Aarovi",
+    title: "Support | House of Aarovi",
     description:
-      "Get help with your Aarovi orders. Find FAQs, track your order, or contact our support team.",
+      "Get help with your House of Aarovi orders. Find FAQs, track your order, or contact our support team.",
   },
 };
 

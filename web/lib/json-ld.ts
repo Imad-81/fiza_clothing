@@ -7,7 +7,7 @@ export function organizationJsonLd(siteUrl: string) {
   return {
     "@context": "https://schema.org",
     "@type": "ClothingStore",
-    name: "Aarovi",
+    name: "House of Aarovi",
     url: siteUrl,
     logo: `${siteUrl}/favicon.ico`,
     image: `${siteUrl}/opengraph-image`,
@@ -80,7 +80,7 @@ export function bespokeServiceJsonLd() {
     name: "Bespoke Ethnic Wear Customization",
     provider: {
       "@type": "ClothingStore",
-      name: "Aarovi",
+      name: "House of Aarovi",
     },
     description:
       "Commission handcrafted, made-to-order ethnic wear — choose your garment, neckline, sleeves, fabric, embroidery, and occasion.",

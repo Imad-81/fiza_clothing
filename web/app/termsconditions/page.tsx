@@ -3,8 +3,8 @@ import { PolicyLayout, PolicySection } from "@/components/policy-layout";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
-  description: "Aarovi's terms and conditions governing the use of our website and services.",
-  openGraph: { title: "Terms & Conditions | Aarovi" },
+  description: "House of Aarovi's terms and conditions governing the use of our website and services.",
+  openGraph: { title: "Terms & Conditions | House of Aarovi" },
 };
 
 const sections = [
@@ -26,7 +26,7 @@ const sections = [
   {
     title: "Intellectual Property",
     content:
-      "All content on this website — including images, text, graphics, logos, product designs, and software — is the property of Aarovi Fashions or its licensors and is protected by applicable intellectual property laws. You may not reproduce, distribute, modify, or create derivative works without our express written consent.",
+      "All content on this website — including images, text, graphics, logos, product designs, and software — is the property of House of Aarovi or its licensors and is protected by applicable intellectual property laws. You may not reproduce, distribute, modify, or create derivative works without our express written consent.",
   },
   {
     title: "User Conduct",
@@ -36,7 +36,7 @@ const sections = [
   {
     title: "Limitation of Liability",
     content:
-      "Aarovi Fashions shall not be liable for any indirect, incidental, special, or consequential damages arising from the use or inability to use our products or services. Our total liability for any claim shall not exceed the amount paid by you for the product in question.",
+      "House of Aarovi shall not be liable for any indirect, incidental, special, or consequential damages arising from the use or inability to use our products or services. Our total liability for any claim shall not exceed the amount paid by you for the product in question.",
   },
   {
     title: "Changes to Terms",

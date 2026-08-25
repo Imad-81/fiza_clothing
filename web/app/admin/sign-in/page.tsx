@@ -3,7 +3,7 @@ import AdminSignInClient from "./sign-in-client";
 
 export const metadata: Metadata = {
   title: "Admin Sign In",
-  description: "Sign in to the Aarovi admin portal.",
+  description: "Sign in to the House of Aarovi admin portal.",
   robots: { index: false, follow: false },
 };
 

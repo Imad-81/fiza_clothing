@@ -5,7 +5,7 @@ import { ProductForm } from "../../product-form";
 
 export const metadata: Metadata = {
   title: "Edit Product",
-  description: "Edit a product — Aarovi admin.",
+  description: "Edit a product — House of Aarovi admin.",
   robots: { index: false, follow: false },
 };
 

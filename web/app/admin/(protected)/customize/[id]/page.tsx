@@ -17,8 +17,8 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   return {
-    title: `Brief ${id.slice(-8)}`,
-    description: "View and respond to a bespoke brief — Aarovi admin.",
+    title: `Bespoke #${id.slice(-6).toUpperCase()}`,
+    description: "View and respond to a bespoke brief — House of Aarovi admin.",
     robots: { index: false, follow: false },
   };
 }

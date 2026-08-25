@@ -64,7 +64,7 @@ export default function Footer() {
           {/* Brand column */}
           <div className="md:col-span-2 lg:col-span-1">
             <Link href="/" className="text-lg font-bold tracking-[0.2em] text-brand-gold">
-              AAROVI
+              HOUSE OF AAROVI
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-white/50">
               Bringing you the finest curated handcrafted fashion. Each piece in our collection
@@ -133,7 +133,7 @@ export default function Footer() {
       {/* Copyright bar */}
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 py-5 text-center text-xs text-white/40 lg:px-8">
-          &copy; {new Date().getFullYear()} Aarovi Fashions. All rights reserved.
+          &copy; {new Date().getFullYear()} House of Aarovi. All rights reserved.
         </div>
       </div>
     </footer>

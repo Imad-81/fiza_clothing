@@ -153,10 +153,10 @@ export default function Hero() {
       <span
         ref={mastheadRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 translate-y-[18%] select-none text-center font-hero text-[clamp(5rem,19vw,17rem)] font-bold leading-none tracking-[0.08em] text-transparent opacity-0"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 translate-y-[18%] select-none text-center font-hero text-[clamp(3rem,10.5vw,11rem)] font-bold leading-none tracking-[0.08em] text-transparent opacity-0 whitespace-nowrap"
         style={{ WebkitTextStroke: "1px rgba(255, 255, 255, 0.25)" }}
       >
-        AAROVI
+        HOUSE OF AAROVI
       </span>
 
       {/* Center content */}

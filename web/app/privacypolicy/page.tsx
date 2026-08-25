@@ -3,8 +3,8 @@ import { PolicyLayout, PolicySection } from "@/components/policy-layout";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Aarovi's privacy policy explaining how we collect, use, and protect your data.",
-  openGraph: { title: "Privacy Policy | Aarovi" },
+  description: "House of Aarovi's privacy policy explaining how we collect, use, and protect your data.",
+  openGraph: { title: "Privacy Policy | House of Aarovi" },
 };
 
 const sections = [

@@ -20,6 +20,6 @@ export default function OrderNotFound() {
 }
 
 export const metadata: Metadata = {
-  title: { absolute: "Order Not Found | Aarovi" },
+  title: { absolute: "Order Not Found | House of Aarovi" },
   description: "This order could not be found. It may have been removed or the link is incorrect.",
 };

@@ -4,9 +4,9 @@ import OrdersClient from "./orders-client";
 import OrdersLoading from "./loading";
 
 export const metadata: Metadata = {
-  title: "My Orders & Customizations — Aarovi",
+  title: "My Orders & Customizations — House of Aarovi",
   description:
-    "View your Aarovi order history and track bespoke customization requests.",
+    "View your House of Aarovi order history and track bespoke customization requests.",
   robots: { index: false, follow: false },
 };
 

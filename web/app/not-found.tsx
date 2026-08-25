@@ -30,6 +30,6 @@ export default function NotFound() {
 }
 
 export const metadata: Metadata = {
-  title: { absolute: "404 — Page Not Found | Aarovi" },
+  title: { absolute: "404 — Page Not Found | House of Aarovi" },
   description: "The page you're looking for doesn't exist. Browse our collection or go back home.",
 };

@@ -73,7 +73,7 @@ export default function NewsletterSection() {
 
           <div className="mx-auto max-w-2xl text-center">
             <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-brand-gold-light">
-              ✦&nbsp;&nbsp;The Aarovi Circle&nbsp;&nbsp;✦
+              ✦&nbsp;&nbsp;The House of Aarovi Circle&nbsp;&nbsp;✦
             </p>
             <h2 className="mt-5 font-display text-4xl font-bold leading-tight text-brand-ivory sm:text-5xl">
               Join the{" "}

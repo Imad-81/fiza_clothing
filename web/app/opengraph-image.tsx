@@ -19,15 +19,15 @@ export default function OpenGraphImage() {
     >
       <div
         style={{
-          fontSize: 80,
+          fontSize: 60,
           fontWeight: 700,
-          letterSpacing: "0.2em",
+          letterSpacing: "0.18em",
           color: "#D4A853",
           textTransform: "uppercase",
           marginBottom: 8,
         }}
       >
-        Aarovi
+        House of Aarovi
       </div>
       <div
         style={{

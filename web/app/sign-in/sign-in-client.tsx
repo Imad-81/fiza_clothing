@@ -71,7 +71,7 @@ function SignInForm() {
         Sign In
       </h1>
       <p className="mt-2 text-center text-sm text-brand-text/60">
-        Welcome back to Aarovi.
+        Welcome back to House of Aarovi.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-8 space-y-5">

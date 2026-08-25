@@ -15,7 +15,7 @@ export function isEmailConfigured(): boolean {
 }
 
 function fromAddress(): string {
-  return process.env.MAIL_FROM_EMAIL ?? "Aarovi <noreply@aarovi.in>";
+  return process.env.MAIL_FROM_EMAIL ?? "House of Aarovi <noreply@aarovi.in>";
 }
 
 let cached: Resend | null = null;
@@ -107,7 +107,7 @@ export async function sendOrderConfirmationEmail(
 ): Promise<SendResult> {
   if (!order.user?.email) return { ok: false, error: "no recipient" };
 
-  const subject = `Your Aarovi order #${order.id.slice(-8)} is confirmed`;
+  const subject = `Your House of Aarovi order #${order.id.slice(-8)} is confirmed`;
 
   return sendTemplate(
     order.user.email,
@@ -141,7 +141,7 @@ export async function sendOrderStatusUpdateEmail(
   if (!order.user?.email) return { ok: false, error: "no recipient" };
 
   const label = statusLabel(newStatus);
-  const subject = `Your Aarovi order is now: ${label}`;
+  const subject = `Your House of Aarovi order is now: ${label}`;
 
   return sendTemplate(
     order.user.email,
@@ -159,7 +159,7 @@ export async function sendOrderCancellationEmail(
 ): Promise<SendResult> {
   if (!order.user?.email) return { ok: false, error: "no recipient" };
 
-  const subject = `Your Aarovi order #${order.id.slice(-8)} has been cancelled`;
+  const subject = `Your House of Aarovi order #${order.id.slice(-8)} has been cancelled`;
 
   return sendTemplate(
     order.user.email,
@@ -218,7 +218,7 @@ export async function sendCustomizationAdminNotifyEmail(
   budgetTier: string | null,
   userEmail: string,
 ): Promise<SendResult> {
-  const subject = `[Aarovi] New bespoke brief: ${garment} from ${userEmail}`;
+  const subject = `[House of Aarovi] New bespoke brief: ${garment} from ${userEmail}`;
 
   return sendTemplate(
     adminEmail(),

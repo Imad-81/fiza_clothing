@@ -53,12 +53,12 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    template: "%s | Aarovi",
-    default: "Aarovi | Where style meets your soul",
+    template: "%s | House of Aarovi",
+    default: "House of Aarovi | Where style meets your soul",
   },
   description:
-    "Discover timeless ethnic wear for women and men at Aarovi. Shop kurtas, lehengas, sarees, and more.",
-  applicationName: "Aarovi",
+    "Discover timeless ethnic wear for women and men at House of Aarovi. Shop kurtas, lehengas, sarees, and more.",
+  applicationName: "House of Aarovi",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -75,12 +75,12 @@ export const metadata: Metadata = {
     "kurtas",
     "lehengas",
     "sarees",
-    "Aarovi",
+    "House of Aarovi",
     "handcrafted fashion",
   ],
   openGraph: {
     type: "website",
-    siteName: "Aarovi",
+    siteName: "House of Aarovi",
     locale: "en_IN",
     url: "/",
   },

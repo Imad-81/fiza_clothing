@@ -64,7 +64,7 @@ export default function SignUpClient() {
         Create Account
       </h1>
       <p className="mt-2 text-center text-sm text-brand-text/60">
-        Join Aarovi and discover timeless ethnic wear.
+        Join House of Aarovi and discover timeless ethnic wear.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-8 space-y-5">

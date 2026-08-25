@@ -3,8 +3,8 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Admin Dashboard",
-  description: "Aarovi admin dashboard.",
+  title: "Dashboard",
+  description: "House of Aarovi admin dashboard.",
   robots: { index: false, follow: false },
 };
 

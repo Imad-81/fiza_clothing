@@ -3,13 +3,13 @@ import BriefBuilder from "@/components/customize/brief-builder";
 import { bespokeServiceJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
-  title: "Customize — Aarovi",
+  title: "Customize — House of Aarovi",
   description:
-    "Commission bespoke handcrafted ethnic wear. Choose your garment, neckline, sleeves, fabric, embroidery and more. Every piece cut, dyed and embroidered by hand.",
+    "Design and order bespoke ethnic wear handcrafted to your exact specifications. Choose silhouettes, necklines, sleeves, fabrics, and embroidery.",
   openGraph: {
-    title: "Bespoke Customization — Aarovi",
+    title: "Bespoke Customization — House of Aarovi",
     description:
-      "Design something entirely yours. Handcrafted ethnic wear, made to order.",
+      "Design and order bespoke ethnic wear handcrafted to your exact specifications.",
     type: "website",
   },
 };

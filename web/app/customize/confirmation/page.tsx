@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Brief Submitted — Aarovi",
+  title: "Brief Submitted — House of Aarovi",
   description:
     "Your bespoke customization brief has been submitted. We will review it and get back to you within 48 hours.",
 };

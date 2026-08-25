@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Discover the story behind Aarovi — handcrafted ethnic fashion with a commitment to quality and authenticity.",
+    "Discover the story behind House of Aarovi — handcrafted ethnic fashion with a commitment to quality and authenticity.",
   openGraph: {
-    title: "About Us | Aarovi",
+    title: "About Us | House of Aarovi",
     description:
-      "Discover the story behind Aarovi — handcrafted ethnic fashion with a commitment to quality and authenticity.",
+      "Discover the story behind House of Aarovi — handcrafted ethnic fashion with a commitment to quality and authenticity.",
   },
 };
 
@@ -38,17 +38,17 @@ export default function AboutPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24">
       <h1 className="font-display text-4xl font-bold text-brand-primary sm:text-5xl">
-        About Aarovi
+        About House of Aarovi
       </h1>
 
       <section className="mt-10">
         <p className="text-lg leading-relaxed text-brand-text/80">
-          Aarovi brings handcrafted ethnic fashion with a commitment to quality
+          House of Aarovi brings handcrafted ethnic fashion with a commitment to quality
           and authenticity. Our name embodies the spirit of timeless elegance —
           where tradition meets contemporary design.
         </p>
         <p className="mt-4 text-base leading-relaxed text-brand-text/70">
-          Founded with a passion for Indian craftsmanship, Aarovi curates
+          Founded with a passion for Indian craftsmanship, House of Aarovi curates
           collections that celebrate the rich heritage of ethnic wear. From
           intricate kurtas to flowing lehengas, each piece tells a story of
           artistry and dedication. We partner with skilled artisans across India,

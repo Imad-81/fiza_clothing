@@ -14,12 +14,13 @@ import { breadcrumbJsonLd } from "@/lib/json-ld";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
-  title: "Collection",
+  title: "All Products",
   description:
-    "Browse our full collection of ethnic wear. Filter by category, price, and availability.",
+    "Explore the complete collection of handcrafted ethnic wear for women and men. Filter by category, fabric, color, price, and more.",
   openGraph: {
-    title: "Collection | Aarovi",
-    description: "Browse our full collection of ethnic wear. Filter by category, price, and availability.",
+    title: "Collection | House of Aarovi",
+    description:
+      "Explore the complete collection of handcrafted ethnic wear for women and men.",
   },
 };
 

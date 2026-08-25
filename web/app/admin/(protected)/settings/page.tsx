@@ -3,8 +3,8 @@ import { getPaymentSettings } from "@/lib/settings";
 import { SettingsClient } from "./settings-client";
 
 export const metadata: Metadata = {
-  title: "Store & Payment Settings",
-  description: "Manage payment QR code and store configuration — Aarovi admin.",
+  title: "Settings",
+  description: "Manage payment QR code and store configuration — House of Aarovi admin.",
   robots: { index: false, follow: false },
 };
 

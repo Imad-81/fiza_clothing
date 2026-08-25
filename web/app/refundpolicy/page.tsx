@@ -3,8 +3,8 @@ import { PolicyLayout, PolicySection } from "@/components/policy-layout";
 
 export const metadata: Metadata = {
   title: "Refund Policy",
-  description: "Aarovi's refund and return policy for ethnic wear.",
-  openGraph: { title: "Refund Policy | Aarovi" },
+  description: "House of Aarovi's refund and return policy for ethnic wear.",
+  openGraph: { title: "Refund Policy | House of Aarovi" },
 };
 
 const sections = [

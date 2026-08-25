@@ -3,8 +3,8 @@ import { PolicyLayout, PolicySection } from "@/components/policy-layout";
 
 export const metadata: Metadata = {
   title: "Shipping Policy",
-  description: "Aarovi's shipping policy for domestic orders across India.",
-  openGraph: { title: "Shipping Policy | Aarovi" },
+  description: "House of Aarovi's shipping policy for domestic orders across India.",
+  openGraph: { title: "Shipping Policy | House of Aarovi" },
 };
 
 const sections = [

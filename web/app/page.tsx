@@ -13,7 +13,11 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   description:
-    "Discover timeless ethnic wear for women and men at Aarovi. Shop handcrafted kurtas, lehengas, sarees, and more.",
+    "Discover timeless ethnic wear for women and men at House of Aarovi. Shop handcrafted kurtas, lehengas, sarees, and more.",
+  openGraph: {
+    description:
+      "Discover timeless ethnic wear for women and men at House of Aarovi. Shop handcrafted kurtas, lehengas, sarees, and more.",
+  },
 };
 
 export default function Home() {

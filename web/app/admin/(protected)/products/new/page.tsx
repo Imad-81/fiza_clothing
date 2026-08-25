@@ -3,7 +3,7 @@ import { ProductForm } from "../product-form";
 
 export const metadata: Metadata = {
   title: "New Product",
-  description: "Create a new product — Aarovi admin.",
+  description: "Create a new product — House of Aarovi admin.",
   robots: { index: false, follow: false },
 };
 

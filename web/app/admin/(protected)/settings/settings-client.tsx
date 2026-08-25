@@ -213,7 +213,7 @@ export function SettingsClient({ initialPayment }: SettingsClientProps) {
                 type="text"
                 value={accountName}
                 onChange={(e) => setAccountName(e.target.value)}
-                placeholder="e.g. Aarovi"
+                placeholder="e.g. House of Aarovi"
                 className="mt-1 w-full rounded-lg border border-brand-primary/15 bg-white px-4 py-2 text-sm text-brand-text outline-none focus:border-brand-gold"
               />
             </div>
