@@ -57,19 +57,19 @@ export default function RecentlyViewed({ excludeId }: RecentlyViewedProps) {
   return (
     <section className="bg-brand-ivory texture-grain">
       <div className="mx-auto max-w-7xl px-4 pb-20 pt-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between border-b border-brand-primary/15 pb-5">
+        <div className="flex items-end justify-between border-b border-[#2B2325]/15 pb-5">
           <div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-brand-gold">
+            <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-[#9A564E]">
               Your eye, lately
             </p>
-            <h2 className="mt-2 font-display text-2xl font-bold text-brand-primary sm:text-3xl">
+            <h2 className="mt-2 font-display text-2xl font-bold text-[#1F191B] sm:text-3xl">
               Recently{" "}
-              <span className="font-serif italic text-brand-gold">Viewed</span>
+              <span className="font-serif italic text-[#A85A50]">Viewed</span>
             </h2>
           </div>
           <button
             onClick={handleClear}
-            className="font-mono text-[11px] uppercase tracking-[0.25em] text-brand-gold transition-colors hover:text-brand-primary"
+            className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#9A564E] transition-colors hover:text-[#1F191B]"
           >
             Clear
           </button>

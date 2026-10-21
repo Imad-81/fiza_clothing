@@ -13,7 +13,7 @@ export default function OpenGraphImage() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: "linear-gradient(135deg, #3C1418 0%, #5E1F28 50%, #200B10 100%)",
+        background: "linear-gradient(135deg, #E5C0BA 0%, #F4E2DF 50%, #FCF8F7 100%)",
         fontFamily: "serif",
       }}
     >
@@ -22,7 +22,7 @@ export default function OpenGraphImage() {
           fontSize: 64,
           fontWeight: 700,
           letterSpacing: "0.16em",
-          color: "#E0A8A6",
+          color: "#1F191B",
           textTransform: "uppercase",
           marginBottom: 10,
         }}
@@ -32,10 +32,10 @@ export default function OpenGraphImage() {
       <div
         style={{
           fontSize: 22,
-          color: "#FDF9F8",
+          color: "#A85A50",
           letterSpacing: "0.25em",
           textTransform: "uppercase",
-          opacity: 0.9,
+          opacity: 0.95,
         }}
       >
         Online Ready to Wear
@@ -45,8 +45,8 @@ export default function OpenGraphImage() {
           marginTop: 36,
           width: 90,
           height: 2,
-          background: "#C88785",
-          opacity: 0.7,
+          background: "#C9968F",
+          opacity: 0.8,
         }}
       />
     </div>,

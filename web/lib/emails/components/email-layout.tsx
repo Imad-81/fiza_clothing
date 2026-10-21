@@ -19,10 +19,10 @@ interface EmailLayoutProps {
 
 const FONT_STACK =
   "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
-const BRAND_PRIMARY = "#3C1418";
-const BRAND_GOLD = "#C88785";
-const BRAND_BG = "#FCF7F6";
-const BRAND_TEXT = "#2A1115";
+const BRAND_PRIMARY = "#1F191B";
+const BRAND_GOLD = "#E5C0BA";
+const BRAND_BG = "#FAF5F4";
+const BRAND_TEXT = "#2B2325";
 
 export function EmailLayout({ preview, children }: EmailLayoutProps) {
   return (

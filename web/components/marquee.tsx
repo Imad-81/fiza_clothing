@@ -18,10 +18,10 @@ function TrackLine({ ariaHidden }: { ariaHidden?: boolean }) {
       {items.map((item) => (
         <span
           key={item}
-          className="flex items-center whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.3em] text-brand-gold-light"
+          className="flex items-center whitespace-nowrap font-mono text-[11px] font-medium uppercase tracking-[0.3em] text-[#2B1D20]"
         >
           <span className="px-6">{item}</span>
-          <span className="text-brand-gold/60">✦</span>
+          <span className="text-[#96544C]">✦</span>
         </span>
       ))}
     </div>
@@ -56,7 +56,7 @@ export default function Marquee() {
   );
 
   return (
-    <div className="relative overflow-hidden border-y border-brand-gold/20 bg-brand-espresso py-3.5 texture-grain-dark">
+    <div className="relative overflow-hidden border-y border-[#D6A6A0] bg-[#E5C0BA] py-3.5 texture-grain shadow-xs">
       <div ref={trackRef} className="flex w-max">
         <TrackLine />
         <TrackLine ariaHidden />

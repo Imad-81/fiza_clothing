@@ -16,29 +16,29 @@ export default async function FeaturedProducts() {
     <SectionReveal className="bg-brand-ivory texture-grain texture-weave">
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
         {/* Editorial split header */}
-        <div className="flex flex-col gap-8 border-b border-brand-primary/15 pb-10 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col gap-8 border-b border-[#2B2325]/15 pb-10 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="reveal-eyebrow font-mono text-[11px] uppercase tracking-[0.35em] text-brand-gold">
+            <p className="reveal-eyebrow font-mono text-[11px] uppercase tracking-[0.35em] text-[#9A564E]">
               N° 01 — Curated for you
             </p>
-            <h2 className="reveal-title mt-4 font-display text-4xl font-bold leading-[1.05] text-brand-primary sm:text-5xl lg:text-6xl">
+            <h2 className="reveal-title mt-4 font-display text-4xl font-bold leading-[1.05] text-[#1F191B] sm:text-5xl lg:text-6xl">
               The Featured{" "}
-              <span className="font-serif italic text-brand-gold">
+              <span className="font-serif italic text-[#A85A50]">
                 Collection
               </span>
             </h2>
           </div>
           <div className="reveal-sub max-w-sm lg:pb-2 lg:text-right">
-            <p className="font-serif text-lg italic leading-relaxed text-brand-text/70">
+            <p className="font-serif text-lg italic leading-relaxed text-[#2B2325]/70">
               Handpicked pieces showcasing our signature ready-to-wear edit —
               designed for effortless style and all-day comfort.
             </p>
             <Link
               href="/shop/collection"
-              className="group mt-4 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-brand-primary transition-colors hover:text-brand-gold"
+              className="group mt-4 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-[#1F191B] transition-colors hover:text-[#A85A50]"
             >
               View all pieces
-              <span className="h-px w-8 bg-brand-gold transition-all duration-300 group-hover:w-12" />
+              <span className="h-px w-8 bg-[#A85A50] transition-all duration-300 group-hover:w-12" />
               <span aria-hidden="true">→</span>
             </Link>
           </div>
