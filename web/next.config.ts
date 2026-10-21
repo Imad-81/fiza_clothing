@@ -44,6 +44,8 @@ function buildRemotePatterns() {
   return patterns;
 }
 
+const isDev = process.env.NODE_ENV === "development";
+
 const nextConfig: NextConfig = {
   serverExternalPackages: ["@prisma/client", "pg"],
   images: {
@@ -58,11 +60,21 @@ const nextConfig: NextConfig = {
     ],
   },
   experimental: {
-    turbopackPluginRuntimeStrategy: "workerThreads",
-    turbopackFileSystemCacheForDev: false,
-    turbopackMemoryLimit: 512 * 1024 * 1024,
+    optimizePackageImports: [
+      "@aws-sdk/client-s3",
+      "@aws-sdk/s3-request-presigner",
+      "framer-motion",
+      "gsap",
+      "lenis",
+    ],
+    ...(isDev
+      ? {
+          turbopackMemoryLimit: 512 * 1024 * 1024,
+        }
+      : {}),
   },
 };
+
 
 export default nextConfig;
 
