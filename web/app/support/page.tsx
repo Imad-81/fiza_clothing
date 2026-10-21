@@ -119,8 +119,8 @@ export default function SupportPage() {
         <div className="mt-6 space-y-2 text-sm">
           <p>
             <span className="font-medium text-brand-text">Phone: </span>
-            <a href="tel:+917416964805" className="text-brand-gold hover:text-brand-primary transition-colors">
-              +91 74169 64805
+            <a href="tel:+917032678048" className="text-brand-gold hover:text-brand-primary transition-colors">
+              +91 70326 78048
             </a>
           </p>
           <p>

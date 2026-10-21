@@ -114,10 +114,10 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="tel:+917416964805"
+                href="tel:+917032678048"
                 className="block text-sm text-white/60 transition-colors hover:text-brand-gold"
               >
-                +91 74169 64805
+                +91 70326 78048
               </a>
             </li>
             <li>

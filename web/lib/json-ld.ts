@@ -11,7 +11,7 @@ export function organizationJsonLd(siteUrl: string) {
     url: siteUrl,
     logo: `${siteUrl}/favicon.ico`,
     image: `${siteUrl}/opengraph-image`,
-    telephone: "+91 7416964805",
+    telephone: "+91 7032678048",
     email: "styleby.fiza@gmail.com",
     address: {
       "@type": "PostalAddress",
@@ -24,7 +24,7 @@ export function organizationJsonLd(siteUrl: string) {
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+91 7416964805",
+      telephone: "+91 7032678048",
       contactType: "customer service",
       availableLanguage: ["English", "Hindi"],
     },
