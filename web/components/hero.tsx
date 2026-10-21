@@ -92,13 +92,6 @@ export default function Hero() {
               duration: 0,
             });
           }
-          if (mast) {
-            gsap.to(mast, {
-              y: `-=${100 * p}` as unknown as number,
-              opacity: 1 - p * 2.5,
-              duration: 0,
-            });
-          }
         },
       });
 
