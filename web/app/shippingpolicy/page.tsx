@@ -3,8 +3,8 @@ import { PolicyLayout, PolicySection } from "@/components/policy-layout";
 
 export const metadata: Metadata = {
   title: "Shipping Policy",
-  description: "House of Aarovi's shipping policy for domestic orders across India.",
-  openGraph: { title: "Shipping Policy | House of Aarovi" },
+  description: "Style By Fiza's shipping policy for domestic orders across India.",
+  openGraph: { title: "Shipping Policy | Style By Fiza" },
 };
 
 const sections = [
@@ -34,7 +34,7 @@ const sections = [
   {
     title: "Order Tracking",
     content:
-      "Once your order is dispatched, you will receive a tracking link via email and SMS. You can also track your order by logging into your account and visiting the 'My Orders' section. If you have any questions about your shipment, please contact us at aaroviofficial@gmail.com.",
+      "Once your order is dispatched, you will receive a tracking link via email and SMS. You can also track your order by logging into your account and visiting the 'My Orders' section. If you have any questions about your shipment, please contact us at styleby.fiza@gmail.com.",
   },
   {
     title: "Areas Served",

@@ -21,7 +21,7 @@ export function OrderCancellationEmail({
   address,
 }: OrderCancellationEmailProps) {
   return (
-    <EmailLayout preview={`Your House of Aarovi order ${orderId.slice(-8)} has been cancelled`}>
+    <EmailLayout preview={`Your Style By Fiza order ${orderId.slice(-8)} has been cancelled`}>
       <Heading style={{ margin: 0, fontSize: "22px", color: BRAND_PRIMARY }}>
         Your order has been cancelled
       </Heading>
@@ -86,10 +86,10 @@ export function OrderCancellationEmail({
       >
         Questions? Reply to this email or write to{" "}
         <Link
-          href="mailto:aaroviofficial@gmail.com"
+          href="mailto:styleby.fiza@gmail.com"
           style={{ color: BRAND_GOLD, textDecoration: "none" }}
         >
-          aaroviofficial@gmail.com
+          styleby.fiza@gmail.com
         </Link>
         . You can also see your order history at{" "}
         <Link

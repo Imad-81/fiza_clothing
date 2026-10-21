@@ -16,11 +16,11 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   title: "All Products",
   description:
-    "Explore the complete collection of handcrafted ethnic wear for women and men. Filter by category, fabric, color, price, and more.",
+    "Explore the complete collection of chic ready-to-wear fashion. Filter by category, fabric, color, price, and more.",
   openGraph: {
-    title: "Collection | House of Aarovi",
+    title: "Collection | Style By Fiza",
     description:
-      "Explore the complete collection of handcrafted ethnic wear for women and men.",
+      "Explore the complete collection of chic ready-to-wear fashion.",
   },
 };
 

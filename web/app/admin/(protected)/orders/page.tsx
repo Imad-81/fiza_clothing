@@ -5,7 +5,7 @@ import { OrdersListClient } from "./orders-list-client";
 
 export const metadata: Metadata = {
   title: "Orders",
-  description: "Manage orders — House of Aarovi admin.",
+  description: "Manage orders — Style By Fiza admin.",
   robots: { index: false, follow: false },
 };
 

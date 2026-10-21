@@ -15,7 +15,7 @@ export function isEmailConfigured(): boolean {
 }
 
 function fromAddress(): string {
-  return process.env.MAIL_FROM_EMAIL ?? "House of Aarovi <noreply@aarovi.in>";
+  return process.env.MAIL_FROM_EMAIL ?? "Style By Fiza <styleby.fiza@gmail.com>";
 }
 
 let cached: Resend | null = null;
@@ -107,7 +107,7 @@ export async function sendOrderConfirmationEmail(
 ): Promise<SendResult> {
   if (!order.user?.email) return { ok: false, error: "no recipient" };
 
-  const subject = `Your House of Aarovi order #${order.id.slice(-8)} is confirmed`;
+  const subject = `Your Style By Fiza order #${order.id.slice(-8)} is confirmed`;
 
   return sendTemplate(
     order.user.email,
@@ -141,7 +141,7 @@ export async function sendOrderStatusUpdateEmail(
   if (!order.user?.email) return { ok: false, error: "no recipient" };
 
   const label = statusLabel(newStatus);
-  const subject = `Your House of Aarovi order is now: ${label}`;
+  const subject = `Your Style By Fiza order is now: ${label}`;
 
   return sendTemplate(
     order.user.email,
@@ -159,7 +159,7 @@ export async function sendOrderCancellationEmail(
 ): Promise<SendResult> {
   if (!order.user?.email) return { ok: false, error: "no recipient" };
 
-  const subject = `Your House of Aarovi order #${order.id.slice(-8)} has been cancelled`;
+  const subject = `Your Style By Fiza order #${order.id.slice(-8)} has been cancelled`;
 
   return sendTemplate(
     order.user.email,
@@ -191,7 +191,7 @@ function adminEmail(): string {
 
   const from = process.env.MAIL_FROM_EMAIL ?? "";
   const match = from.match(/<([^>]+)>/);
-  return match ? match[1] : from || "admin@aarovi.in";
+  return match ? match[1] : from || "styleby.fiza@gmail.com";
 }
 
 export async function sendCustomizationConfirmationEmail(
@@ -218,7 +218,7 @@ export async function sendCustomizationAdminNotifyEmail(
   budgetTier: string | null,
   userEmail: string,
 ): Promise<SendResult> {
-  const subject = `[House of Aarovi] New bespoke brief: ${garment} from ${userEmail}`;
+  const subject = `[Style By Fiza] New bespoke brief: ${garment} from ${userEmail}`;
 
   return sendTemplate(
     adminEmail(),

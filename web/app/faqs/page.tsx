@@ -4,8 +4,8 @@ import type { AccordionItem } from "@/components/accordion";
 
 export const metadata: Metadata = {
   title: "FAQs",
-  description: "Find answers to common questions about orders, shipping, returns, and products at House of Aarovi.",
-  openGraph: { title: "FAQs | House of Aarovi" },
+  description: "Find answers to common questions about orders, shipping, returns, and products at Style By Fiza.",
+  openGraph: { title: "FAQs | Style By Fiza" },
 };
 
 const orders: AccordionItem[] = [

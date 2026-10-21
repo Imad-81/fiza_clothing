@@ -179,7 +179,7 @@ export function SettingsClient({ initialPayment }: SettingsClientProps) {
                   value={qrCodeUrl}
                   onChange={(e) => setQrCodeUrl(e.target.value)}
                   className="mt-1 w-full rounded-lg border border-brand-primary/15 bg-white px-3 py-2 text-xs font-mono text-brand-text outline-none focus:border-brand-gold"
-                  placeholder="https://aarovi-storage-s3..."
+                  placeholder="https://stylebyfiza-storage-s3..."
                 />
               </div>
 
@@ -213,7 +213,7 @@ export function SettingsClient({ initialPayment }: SettingsClientProps) {
                 type="text"
                 value={accountName}
                 onChange={(e) => setAccountName(e.target.value)}
-                placeholder="e.g. House of Aarovi"
+                placeholder="e.g. Style By Fiza"
                 className="mt-1 w-full rounded-lg border border-brand-primary/15 bg-white px-4 py-2 text-sm text-brand-text outline-none focus:border-brand-gold"
               />
             </div>
@@ -226,7 +226,7 @@ export function SettingsClient({ initialPayment }: SettingsClientProps) {
                 type="text"
                 value={upiId}
                 onChange={(e) => setUpiId(e.target.value)}
-                placeholder="e.g. aaroviofficial@oksbi"
+                placeholder="e.g. styleby.fiza@okhdfcbank"
                 className="mt-1 w-full rounded-lg border border-brand-primary/15 bg-white px-4 py-2 text-sm text-brand-text outline-none focus:border-brand-gold"
               />
               <span className="mt-1 block text-[11px] text-brand-text/50">

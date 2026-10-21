@@ -3,8 +3,8 @@ import { PolicyLayout, PolicySection } from "@/components/policy-layout";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
-  description: "House of Aarovi's terms and conditions governing the use of our website and services.",
-  openGraph: { title: "Terms & Conditions | House of Aarovi" },
+  description: "Style By Fiza's terms and conditions governing the use of our website and services.",
+  openGraph: { title: "Terms & Conditions | Style By Fiza" },
 };
 
 const sections = [
@@ -26,7 +26,7 @@ const sections = [
   {
     title: "Intellectual Property",
     content:
-      "All content on this website — including images, text, graphics, logos, product designs, and software — is the property of House of Aarovi or its licensors and is protected by applicable intellectual property laws. You may not reproduce, distribute, modify, or create derivative works without our express written consent.",
+      "All content on this website — including images, text, graphics, logos, product designs, and software — is the property of Style By Fiza or its licensors and is protected by applicable intellectual property laws. You may not reproduce, distribute, modify, or create derivative works without our express written consent.",
   },
   {
     title: "User Conduct",
@@ -36,7 +36,7 @@ const sections = [
   {
     title: "Limitation of Liability",
     content:
-      "House of Aarovi shall not be liable for any indirect, incidental, special, or consequential damages arising from the use or inability to use our products or services. Our total liability for any claim shall not exceed the amount paid by you for the product in question.",
+      "Style By Fiza shall not be liable for any indirect, incidental, special, or consequential damages arising from the use or inability to use our products or services. Our total liability for any claim shall not exceed the amount paid by you for the product in question.",
   },
   {
     title: "Changes to Terms",
@@ -46,7 +46,7 @@ const sections = [
   {
     title: "Contact",
     content:
-      "For questions about these Terms & Conditions, please contact us at aaroviofficial@gmail.com or write to us at our registered office in Hyderabad, Telangana, India.",
+      "For questions about these Terms & Conditions, please contact us at styleby.fiza@gmail.com or write to us at our registered office in Hyderabad, Telangana, India.",
   },
 ];
 

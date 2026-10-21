@@ -1,7 +1,8 @@
 import { atom, computed } from "nanostores";
 import { useEffect } from "react";
 
-const STORAGE_KEY = "aarovi:customize-draft";
+const STORAGE_KEY = "fiza:customize-draft";
+const LEGACY_STORAGE_KEY = "aarovi:customize-draft";
 
 export interface CustomizeDraft {
   selections: Record<string, string | string[]>;
@@ -30,7 +31,9 @@ export const customizeDraft = atom<CustomizeDraft>(emptyDraft());
 export function useSyncCustomizeDraft() {
   useEffect(() => {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw =
+        localStorage.getItem(STORAGE_KEY) ??
+        localStorage.getItem(LEGACY_STORAGE_KEY);
       if (raw) {
         const parsed = JSON.parse(raw);
         customizeDraft.set({

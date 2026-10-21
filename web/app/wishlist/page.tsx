@@ -3,7 +3,7 @@ import WishlistClient from "./wishlist-client";
 
 export const metadata: Metadata = {
   title: "Wishlist",
-  description: "Your saved items at House of Aarovi. Move items to cart or remove from your wishlist.",
+  description: "Your saved items at Style By Fiza. Move items to cart or remove from your wishlist.",
   robots: { index: false, follow: false },
 };
 

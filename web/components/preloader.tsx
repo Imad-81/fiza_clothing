@@ -67,10 +67,13 @@ export default function Preloader() {
       aria-hidden="true"
     >
       <div ref={wordmarkRef} className="text-center">
-        <h2 className="font-hero text-[clamp(1.75rem,6vw,4.5rem)] font-bold leading-none tracking-[0.12em] text-brand-ivory whitespace-nowrap">
-          HOUSE OF AAROVI
+        <h2 className="font-hero text-[clamp(1.75rem,6vw,4.5rem)] font-bold leading-none tracking-[0.14em] text-brand-ivory whitespace-nowrap">
+          STYLE BY FIZA
         </h2>
-        <div className="preload-rule mx-auto mt-2 h-px w-16 origin-center scale-x-0 bg-amber-200/60" />
+        <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.35em] text-brand-gold-light/80">
+          Online Ready to Wear
+        </p>
+        <div className="preload-rule mx-auto mt-3 h-px w-16 origin-center scale-x-0 bg-brand-gold-light/60" />
       </div>
     </div>
   );

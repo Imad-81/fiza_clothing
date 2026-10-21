@@ -30,8 +30,8 @@ export default async function FeaturedProducts() {
           </div>
           <div className="reveal-sub max-w-sm lg:pb-2 lg:text-right">
             <p className="font-serif text-lg italic leading-relaxed text-brand-text/70">
-              Handpicked pieces showcasing the finest of the atelier — each one
-              cut, dyed and finished by hand.
+              Handpicked pieces showcasing our signature ready-to-wear edit —
+              designed for effortless style and all-day comfort.
             </p>
             <Link
               href="/shop/collection"

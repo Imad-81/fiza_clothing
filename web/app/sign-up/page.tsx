@@ -4,7 +4,7 @@ import SignUpClient from "./sign-up-client";
 export const metadata: Metadata = {
   title: "Create Account",
   description:
-    "Create your House of Aarovi account to start shopping handcrafted ethnic wear.",
+    "Create your Style By Fiza account to start shopping chic ready-to-wear fashion.",
   robots: { index: false, follow: false },
 };
 

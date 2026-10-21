@@ -36,7 +36,7 @@ export default async function CategoryCards() {
             </h2>
           </div>
           <p className="reveal-sub max-w-sm font-serif text-lg italic leading-relaxed text-brand-text/70 lg:pb-2 lg:text-right">
-            Six edits of the house — from everyday kurtis to heirloom lehengas.
+            Six signature edits — from everyday chic kurtis to celebration-ready silhouettes.
           </p>
         </div>
 

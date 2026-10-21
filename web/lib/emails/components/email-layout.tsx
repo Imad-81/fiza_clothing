@@ -19,10 +19,10 @@ interface EmailLayoutProps {
 
 const FONT_STACK =
   "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
-const BRAND_PRIMARY = "#4F200D";
-const BRAND_GOLD = "#8B6B44";
-const BRAND_BG = "#FBF7F3";
-const BRAND_TEXT = "#2A1506";
+const BRAND_PRIMARY = "#3C1418";
+const BRAND_GOLD = "#C88785";
+const BRAND_BG = "#FCF7F6";
+const BRAND_TEXT = "#2A1115";
 
 export function EmailLayout({ preview, children }: EmailLayoutProps) {
   return (
@@ -45,17 +45,28 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
             padding: "24px 24px 48px",
           }}
         >
-          <Section style={{ paddingBottom: "16px" }}>
+          <Section style={{ paddingBottom: "16px", textAlign: "center" }}>
             <Text
               style={{
                 margin: 0,
                 fontSize: "22px",
                 fontWeight: 700,
                 color: BRAND_PRIMARY,
-                letterSpacing: "0.04em",
+                letterSpacing: "0.08em",
               }}
             >
-              HOUSE OF AAROVI
+              STYLE BY FIZA
+            </Text>
+            <Text
+              style={{
+                margin: "4px 0 0",
+                fontSize: "11px",
+                letterSpacing: "0.2em",
+                color: BRAND_GOLD,
+                textTransform: "uppercase",
+              }}
+            >
+              Online Ready to Wear
             </Text>
           </Section>
 
@@ -85,14 +96,13 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
                 color: `${BRAND_TEXT}80`,
               }}
             >
-              House of Aarovi · Handcrafted essentials. You received this email because
-              you placed an order with us. If you didn’t, please reply to this
-              email so we can help. Visit us at{" "}
+              Style By Fiza · Online Ready to Wear. You received this email because
+              you placed an order with us. If you didn’t, please contact us at{" "}
               <Link
-                href="https://aarovi.in"
+                href="mailto:styleby.fiza@gmail.com"
                 style={{ color: BRAND_GOLD, textDecoration: "none" }}
               >
-                aarovi.in
+                styleby.fiza@gmail.com
               </Link>
               .
             </Text>

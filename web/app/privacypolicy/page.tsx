@@ -3,8 +3,8 @@ import { PolicyLayout, PolicySection } from "@/components/policy-layout";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "House of Aarovi's privacy policy explaining how we collect, use, and protect your data.",
-  openGraph: { title: "Privacy Policy | House of Aarovi" },
+  description: "Style By Fiza's privacy policy explaining how we collect, use, and protect your data.",
+  openGraph: { title: "Privacy Policy | Style By Fiza" },
 };
 
 const sections = [
@@ -60,12 +60,12 @@ const sections = [
   {
     title: "Your Rights",
     content:
-      "You have the right to access, update, or delete your personal information at any time. You can do this by logging into your account settings or contacting us at aaroviofficial@gmail.com. You may also request a copy of the data we hold about you.",
+      "You have the right to access, update, or delete your personal information at any time. You can do this by logging into your account settings or contacting us at styleby.fiza@gmail.com. You may also request a copy of the data we hold about you.",
   },
   {
     title: "Contact Us",
     content:
-      "If you have any questions about this Privacy Policy or how we handle your data, please contact us at aaroviofficial@gmail.com or write to us at our registered address in Hyderabad, Telangana, India.",
+      "If you have any questions about this Privacy Policy or how we handle your data, please contact us at styleby.fiza@gmail.com or write to us at our registered address in Hyderabad, Telangana, India.",
   },
 ];
 

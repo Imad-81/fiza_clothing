@@ -53,12 +53,12 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    template: "%s | House of Aarovi",
-    default: "House of Aarovi | Where style meets your soul",
+    template: "%s | Style By Fiza",
+    default: "Style By Fiza | Online Ready to Wear",
   },
   description:
-    "Discover timeless ethnic wear for women and men at House of Aarovi. Shop kurtas, lehengas, sarees, and more.",
-  applicationName: "House of Aarovi",
+    "Discover chic, contemporary ready-to-wear clothing at Style By Fiza. Shop kurtis, kurti sets, dresses, and boutique fashion.",
+  applicationName: "Style By Fiza",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -70,17 +70,18 @@ export const metadata: Metadata = {
     ],
   },
   keywords: [
-    "ethnic wear",
-    "Indian fashion",
-    "kurtas",
-    "lehengas",
-    "sarees",
-    "House of Aarovi",
-    "handcrafted fashion",
+    "ready to wear",
+    "women fashion",
+    "kurtis",
+    "kurti sets",
+    "anarkalis",
+    "Style By Fiza",
+    "boutique fashion",
+    "online ready to wear",
   ],
   openGraph: {
     type: "website",
-    siteName: "House of Aarovi",
+    siteName: "Style By Fiza",
     locale: "en_IN",
     url: "/",
   },

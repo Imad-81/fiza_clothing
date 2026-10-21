@@ -169,7 +169,7 @@ export default function ContactPage() {
               />
               <ContactItem
                 label="Email"
-                value="aaroviofficial@gmail.com"
+                value="styleby.fiza@gmail.com"
                 icon={
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -195,7 +195,7 @@ export default function ContactPage() {
             </h2>
             <div className="mt-4 flex gap-4">
               <SocialLink
-                href="https://www.instagram.com/aarovi_official/"
+                href="https://www.instagram.com/styleby.fiza"
                 label="Instagram"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden>

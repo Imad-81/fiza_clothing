@@ -1,6 +1,6 @@
-# House of Aarovi — Web Frontend & API
+# Style By Fiza — Web Frontend & API
 
-This directory contains the primary web application and API service for **House of Aarovi**, built with Next.js 16 (App Router), React 19, Tailwind CSS v4, Prisma ORM, and Better Auth.
+This directory contains the primary web application and API service for **Style By Fiza** (Online Ready to Wear), built with Next.js 16 (App Router), React 19, Tailwind CSS v4, Prisma ORM, and Better Auth.
 
 For comprehensive documentation, project architecture, setup instructions, and environment variables, please refer to the [Root README](../README.md).
 

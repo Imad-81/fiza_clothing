@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Dashboard",
-  description: "House of Aarovi admin dashboard.",
+  description: "Style By Fiza admin dashboard.",
   robots: { index: false, follow: false },
 };
 

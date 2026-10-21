@@ -19,7 +19,8 @@ interface SearchOverlayProps {
   onClose: () => void;
 }
 
-const STORAGE_KEY = "aarovi:recent-searches";
+const STORAGE_KEY = "fiza:recent-searches";
+const LEGACY_STORAGE_KEY = "aarovi:recent-searches";
 const MAX_RECENT = 5;
 const DEBOUNCE_MS = 300;
 
@@ -40,7 +41,9 @@ export default function SearchOverlay({ open, onClose }: SearchOverlayProps) {
         setResults([]);
       });
       try {
-        const stored = localStorage.getItem(STORAGE_KEY);
+        const stored =
+          localStorage.getItem(STORAGE_KEY) ??
+          localStorage.getItem(LEGACY_STORAGE_KEY);
         if (stored) startTransition(() => setRecentSearches(JSON.parse(stored)));
       } catch {
         /* ignore parse errors */

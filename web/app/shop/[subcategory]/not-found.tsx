@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: { absolute: "Category Not Found | House of Aarovi" },
+  title: { absolute: "Category Not Found | Style By Fiza" },
   description: "The category you're looking for doesn't exist or has been removed.",
 };
 

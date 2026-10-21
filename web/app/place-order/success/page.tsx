@@ -3,7 +3,7 @@ import SuccessClient from "./success-client";
 
 export const metadata: Metadata = {
   title: "Order Confirmed",
-  description: "Your order has been placed successfully at House of Aarovi.",
+  description: "Your order has been placed successfully at Style By Fiza.",
   robots: { index: false, follow: false },
 };
 

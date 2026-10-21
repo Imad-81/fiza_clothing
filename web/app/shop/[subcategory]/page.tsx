@@ -29,19 +29,19 @@ export async function generateMetadata({
   const category = categories.find((c) => c.slug === subcategory);
 
   if (!category) {
-    return { title: { absolute: "Category Not Found | House of Aarovi" } };
+    return { title: { absolute: "Category Not Found | Style By Fiza" } };
   }
 
   return {
     title: category.name,
     description: `Browse our ${category.name} collection. Filter by price and availability.`,
     openGraph: {
-      title: `${category.name} | House of Aarovi`,
+      title: `${category.name} | Style By Fiza`,
       description: `Browse our ${category.name} collection. Filter by price and availability.`,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${category.name} | House of Aarovi`,
+      title: `${category.name} | Style By Fiza`,
     },
     alternates: {
       canonical: `/shop/${subcategory}`,

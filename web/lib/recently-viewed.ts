@@ -9,9 +9,10 @@ export interface RecentlyViewedProduct {
   inStock: boolean;
 }
 
-const STORAGE_KEY = "aarovi:recently-viewed";
+const STORAGE_KEY = "fiza:recently-viewed";
+const LEGACY_STORAGE_KEY = "aarovi:recently-viewed";
 const MAX_ITEMS = 5;
-const CHANGE_EVENT = "aarovi:rv-change";
+const CHANGE_EVENT = "fiza:rv-change";
 
 const EMPTY: RecentlyViewedProduct[] = [];
 let cached: RecentlyViewedProduct[] = EMPTY;
@@ -34,7 +35,9 @@ export function addToRecentlyViewed(product: RecentlyViewedProduct) {
 export function getRecentlyViewed(): RecentlyViewedProduct[] {
   if (typeof window === "undefined") return cached;
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw =
+      localStorage.getItem(STORAGE_KEY) ??
+      localStorage.getItem(LEGACY_STORAGE_KEY);
     if (!raw) {
       if (cached !== EMPTY) cached = EMPTY;
       return cached;

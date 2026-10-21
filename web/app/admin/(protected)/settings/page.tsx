@@ -4,7 +4,7 @@ import { SettingsClient } from "./settings-client";
 
 export const metadata: Metadata = {
   title: "Settings",
-  description: "Manage payment QR code and store configuration — House of Aarovi admin.",
+  description: "Manage payment QR code and store configuration — Style By Fiza admin.",
   robots: { index: false, follow: false },
 };
 

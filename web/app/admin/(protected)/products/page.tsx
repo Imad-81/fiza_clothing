@@ -4,7 +4,7 @@ import { ProductListClient } from "./product-list-client";
 
 export const metadata: Metadata = {
   title: "Products",
-  description: "Manage products — House of Aarovi admin.",
+  description: "Manage products — Style By Fiza admin.",
   robots: { index: false, follow: false },
 };
 

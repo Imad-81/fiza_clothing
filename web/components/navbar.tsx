@@ -199,8 +199,12 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
-        <Link href="/">
-          <img src="/logo.png" alt="House of Aarovi" className="h-12 md:h-14 w-auto object-contain" />
+        <Link href="/" className="group flex items-center">
+          <img
+            src="/fiza-logo.png"
+            alt="Style By Fiza"
+            className="h-11 md:h-13 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
         </Link>
 
         <ul className="hidden items-center gap-8 lg:flex">

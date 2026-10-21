@@ -13,39 +13,40 @@ export default function OpenGraphImage() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: "linear-gradient(135deg, #4F200D 0%, #7A3B1E 50%, #4F200D 100%)",
+        background: "linear-gradient(135deg, #3C1418 0%, #5E1F28 50%, #200B10 100%)",
         fontFamily: "serif",
       }}
     >
       <div
         style={{
-          fontSize: 60,
+          fontSize: 64,
           fontWeight: 700,
-          letterSpacing: "0.18em",
-          color: "#D4A853",
+          letterSpacing: "0.16em",
+          color: "#E0A8A6",
           textTransform: "uppercase",
-          marginBottom: 8,
+          marginBottom: 10,
         }}
       >
-        House of Aarovi
+        Style By Fiza
       </div>
       <div
         style={{
-          fontSize: 24,
-          color: "#F5E6D3",
-          letterSpacing: "0.05em",
+          fontSize: 22,
+          color: "#FDF9F8",
+          letterSpacing: "0.25em",
+          textTransform: "uppercase",
           opacity: 0.9,
         }}
       >
-        Where style meets your soul
+        Online Ready to Wear
       </div>
       <div
         style={{
-          marginTop: 40,
-          width: 80,
+          marginTop: 36,
+          width: 90,
           height: 2,
-          background: "#D4A853",
-          opacity: 0.5,
+          background: "#C88785",
+          opacity: 0.7,
         }}
       />
     </div>,

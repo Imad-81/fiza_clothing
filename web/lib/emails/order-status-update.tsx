@@ -46,7 +46,7 @@ export function OrderStatusUpdateEmail({
   const currentIndex = TIMELINE.findIndex((s) => s.key === newStatus);
 
   return (
-    <EmailLayout preview={`Your House of Aarovi order is now: ${statusLabel}`}>
+    <EmailLayout preview={`Your Style By Fiza order is now: ${statusLabel}`}>
       <Heading style={{ margin: 0, fontSize: "22px", color: BRAND_PRIMARY }}>
         {HEADLINE[newStatus] ?? `Your order is now ${statusLabel}`}
       </Heading>

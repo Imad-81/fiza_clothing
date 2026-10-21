@@ -4,11 +4,11 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Support",
   description:
-    "Get help with your House of Aarovi orders. Find FAQs, track your order, or contact our support team.",
+    "Get help with your Style By Fiza orders. Find FAQs, track your order, or contact our support team.",
   openGraph: {
-    title: "Support | House of Aarovi",
+    title: "Support | Style By Fiza",
     description:
-      "Get help with your House of Aarovi orders. Find FAQs, track your order, or contact our support team.",
+      "Get help with your Style By Fiza orders. Find FAQs, track your order, or contact our support team.",
   },
 };
 
@@ -125,8 +125,8 @@ export default function SupportPage() {
           </p>
           <p>
             <span className="font-medium text-brand-text">Email: </span>
-            <a href="mailto:aaroviofficial@gmail.com" className="text-brand-gold hover:text-brand-primary transition-colors">
-              aaroviofficial@gmail.com
+            <a href="mailto:styleby.fiza@gmail.com" className="text-brand-gold hover:text-brand-primary transition-colors">
+              styleby.fiza@gmail.com
             </a>
           </p>
         </div>

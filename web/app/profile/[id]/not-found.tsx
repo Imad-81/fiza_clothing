@@ -19,6 +19,6 @@ export default function ProfileNotFound() {
 }
 
 export const metadata: Metadata = {
-  title: { absolute: "Profile Not Found | House of Aarovi" },
+  title: { absolute: "Profile Not Found | Style By Fiza" },
   description: "This profile doesn't exist or you don't have access.",
 };

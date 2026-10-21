@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   return {
     title: `Bespoke #${id.slice(-6).toUpperCase()}`,
-    description: "View and respond to a bespoke brief — House of Aarovi admin.",
+    description: "View and respond to a bespoke brief — Style By Fiza admin.",
     robots: { index: false, follow: false },
   };
 }

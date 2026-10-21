@@ -10,7 +10,7 @@ import { getOptionLabel } from "@/lib/customize/taxonomy";
 
 export const metadata: Metadata = {
   title: "Bespoke Requests",
-  description: "Manage customisation requests — House of Aarovi admin.",
+  description: "Manage customisation requests — Style By Fiza admin.",
   robots: { index: false, follow: false },
 };
 

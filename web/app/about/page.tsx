@@ -3,34 +3,34 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Discover the story behind House of Aarovi — handcrafted ethnic fashion with a commitment to quality and authenticity.",
+    "Discover the story behind Style By Fiza — chic, contemporary ready-to-wear fashion designed for effortless elegance.",
   openGraph: {
-    title: "About Us | House of Aarovi",
+    title: "About Us | Style By Fiza",
     description:
-      "Discover the story behind House of Aarovi — handcrafted ethnic fashion with a commitment to quality and authenticity.",
+      "Discover the story behind Style By Fiza — chic, contemporary ready-to-wear fashion designed for effortless elegance.",
   },
 };
 
 const values = [
   {
-    title: "Quality",
+    title: "Curated Style",
     description:
-      "Every piece in our collection is thoughtfully selected to celebrate timeless elegance and modern style.",
+      "Every piece is thoughtfully selected to celebrate effortless chic, flattering silhouettes, and modern flair.",
   },
   {
-    title: "Authenticity",
+    title: "Ready to Wear",
     description:
-      "We work directly with artisans and trusted suppliers to bring you authentic handcrafted fashion.",
+      "Designed for real life and effortless styling — versatile, comfortable, and ready for every moment.",
   },
   {
-    title: "Craftsmanship",
+    title: "Quality & Comfort",
     description:
-      "Each garment reflects the skill and dedication of master craftspeople who take pride in their work.",
+      "We prioritize premium fabrics, flattering fits, and meticulous finishing so you feel confident all day.",
   },
   {
-    title: "Sustainability",
+    title: "Modern Wardrobe",
     description:
-      "We believe in slow fashion — creating pieces that last, reducing waste, and supporting ethical practices.",
+      "Boutique fashion that seamlessly bridges everyday casual sophistication and standout festive looks.",
   },
 ];
 
@@ -38,22 +38,20 @@ export default function AboutPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24">
       <h1 className="font-display text-4xl font-bold text-brand-primary sm:text-5xl">
-        About House of Aarovi
+        About Style By Fiza
       </h1>
 
       <section className="mt-10">
         <p className="text-lg leading-relaxed text-brand-text/80">
-          House of Aarovi brings handcrafted ethnic fashion with a commitment to quality
-          and authenticity. Our name embodies the spirit of timeless elegance —
-          where tradition meets contemporary design.
+          Style By Fiza brings chic, contemporary ready-to-wear fashion designed for
+          effortless elegance. We believe that great style should be accessible,
+          empowering, and seamlessly suited to your everyday life.
         </p>
         <p className="mt-4 text-base leading-relaxed text-brand-text/70">
-          Founded with a passion for Indian craftsmanship, House of Aarovi curates
-          collections that celebrate the rich heritage of ethnic wear. From
-          intricate kurtas to flowing lehengas, each piece tells a story of
-          artistry and dedication. We partner with skilled artisans across India,
-          ensuring that every garment meets the highest standards of quality
-          while preserving traditional techniques.
+          From vibrant casual kurtis to intricately styled festive ensembles, our curated
+          edits celebrate versatility and modern femininity. Each collection is carefully
+          chosen with attention to cut, fabric, and detail, ensuring you always step out
+          looking and feeling extraordinary.
         </p>
       </section>
 
@@ -62,10 +60,9 @@ export default function AboutPage() {
           Our Mission
         </h2>
         <p className="mt-4 text-base leading-relaxed text-brand-text/70">
-          To make authentic, handcrafted ethnic wear accessible to everyone
-          while preserving the legacy of Indian craftsmanship. We believe that
-          what you wear should reflect your personality, celebrate your
-          heritage, and make you feel extraordinary.
+          To bring modern women effortlessly stylish, ready-to-wear clothing that blends
+          timeless grace with on-trend silhouettes — delivered straight to your door with
+          uncompromised quality and care.
         </p>
       </section>
 

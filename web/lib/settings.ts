@@ -3,7 +3,7 @@ import { getPublicUrl } from "@/lib/uploads/storage";
 
 export const DEFAULT_PAYMENT_QR_URL = getPublicUrl("settings/payment-qr.jpeg");
 export const DEFAULT_UPI_ID = "";
-export const DEFAULT_ACCOUNT_NAME = "House of Aarovi";
+export const DEFAULT_ACCOUNT_NAME = "Style By Fiza";
 export const DEFAULT_PAYMENT_INSTRUCTIONS =
   "Scan the QR code using any UPI app (GPay, PhonePe, Paytm, Cred, BHIM) to complete the payment. After payment, enter your UPI Transaction / UTR ID or attach a screenshot.";
 

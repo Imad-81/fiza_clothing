@@ -7,12 +7,12 @@ export function organizationJsonLd(siteUrl: string) {
   return {
     "@context": "https://schema.org",
     "@type": "ClothingStore",
-    name: "House of Aarovi",
+    name: "Style By Fiza",
     url: siteUrl,
     logo: `${siteUrl}/favicon.ico`,
     image: `${siteUrl}/opengraph-image`,
     telephone: "+91 7416964805",
-    email: "aaroviofficial@gmail.com",
+    email: "styleby.fiza@gmail.com",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Hyderabad",
@@ -20,7 +20,7 @@ export function organizationJsonLd(siteUrl: string) {
       addressCountry: "IN",
     },
     sameAs: [
-      "https://www.instagram.com/aarovi_official/",
+      "https://www.instagram.com/styleby.fiza",
     ],
     contactPoint: {
       "@type": "ContactPoint",
@@ -77,13 +77,13 @@ export function bespokeServiceJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Bespoke Ethnic Wear Customization",
+    name: "Bespoke Wear Customization",
     provider: {
       "@type": "ClothingStore",
-      name: "House of Aarovi",
+      name: "Style By Fiza",
     },
     description:
-      "Commission handcrafted, made-to-order ethnic wear — choose your garment, neckline, sleeves, fabric, embroidery, and occasion.",
+      "Commission custom, made-to-order clothing — choose your garment, neckline, sleeves, fabric, and styling.",
     serviceType: "Bespoke Tailoring & Customization",
     areaServed: {
       "@type": "Country",
@@ -91,7 +91,7 @@ export function bespokeServiceJsonLd() {
     },
     availableChannel: {
       "@type": "ServiceChannel",
-      serviceUrl: "https://aarovi.in/customize",
+      serviceUrl: "/customize",
     },
   };
 }

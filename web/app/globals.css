@@ -3,30 +3,30 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --color-brand-bg: #FBF7F3;
-  --color-brand-primary: #4F200D;
-  --color-brand-gold: #8B6B44;
-  --color-brand-text: #2A1506;
-  --color-brand-dark: #1A0D04;
-  /* Atelier palette extensions */
-  --color-brand-ivory: #F8F2E9;
-  --color-brand-parchment: #F0E7D7;
-  --color-brand-gold-light: #C6A56B;
-  --color-brand-espresso: #221105;
+  --color-brand-bg: #FCF7F6;
+  --color-brand-primary: #3C1418;
+  --color-brand-gold: #C88785;
+  --color-brand-text: #2A1115;
+  --color-brand-dark: #1A080C;
+  /* Boutique palette extensions */
+  --color-brand-ivory: #FDF9F8;
+  --color-brand-parchment: #F5EAE9;
+  --color-brand-gold-light: #E0A8A6;
+  --color-brand-espresso: #200B10;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-brand-bg: #FBF7F3;
-  --color-brand-primary: #4F200D;
-  --color-brand-gold: #8B6B44;
-  --color-brand-text: #2A1506;
-  --color-brand-dark: #1A0D04;
-  --color-brand-ivory: #F8F2E9;
-  --color-brand-parchment: #F0E7D7;
-  --color-brand-gold-light: #C6A56B;
-  --color-brand-espresso: #221105;
+  --color-brand-bg: #FCF7F6;
+  --color-brand-primary: #3C1418;
+  --color-brand-gold: #C88785;
+  --color-brand-text: #2A1115;
+  --color-brand-dark: #1A080C;
+  --color-brand-ivory: #FDF9F8;
+  --color-brand-parchment: #F5EAE9;
+  --color-brand-gold-light: #E0A8A6;
+  --color-brand-espresso: #200B10;
   --font-sans: var(--font-inter);
   --font-mono: var(--font-ibm-plex-mono);
   --font-display: var(--font-canela-deck);

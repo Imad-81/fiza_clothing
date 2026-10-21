@@ -4,7 +4,7 @@ import PlaceOrderClient from "./place-order-client";
 export const metadata: Metadata = {
   title: "Checkout",
   description:
-    "Complete your purchase at House of Aarovi. Secure checkout with multiple payment options.",
+    "Complete your purchase at Style By Fiza. Secure checkout with multiple payment options.",
   robots: { index: false, follow: false },
 };
 

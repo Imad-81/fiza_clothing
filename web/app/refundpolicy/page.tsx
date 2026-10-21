@@ -3,8 +3,8 @@ import { PolicyLayout, PolicySection } from "@/components/policy-layout";
 
 export const metadata: Metadata = {
   title: "Refund Policy",
-  description: "House of Aarovi's refund and return policy for ethnic wear.",
-  openGraph: { title: "Refund Policy | House of Aarovi" },
+  description: "Style By Fiza's refund and return policy for ready-to-wear fashion.",
+  openGraph: { title: "Refund Policy | Style By Fiza" },
 };
 
 const sections = [
@@ -21,7 +21,7 @@ const sections = [
   {
     title: "Return Process",
     content:
-      "To initiate a return, please email us at aaroviofficial@gmail.com with your order number and reason for return. We will provide a return authorization and instructions. You will be responsible for return shipping costs unless the item is defective or incorrect.",
+      "To initiate a return, please email us at styleby.fiza@gmail.com with your order number and reason for return. We will provide a return authorization and instructions. You will be responsible for return shipping costs unless the item is defective or incorrect.",
   },
   {
     title: "Refund Timeline",
@@ -41,7 +41,7 @@ const sections = [
   {
     title: "Damaged or Incorrect Items",
     content:
-      "If you receive a damaged or incorrect item, please contact us immediately at aaroviofficial@gmail.com with your order number and photos of the issue. We will arrange a full refund or replacement at no additional cost.",
+      "If you receive a damaged or incorrect item, please contact us immediately at styleby.fiza@gmail.com with your order number and photos of the issue. We will arrange a full refund or replacement at no additional cost.",
   },
 ];
 

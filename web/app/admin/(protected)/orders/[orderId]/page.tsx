@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { orderId } = await params;
   return {
     title: `Order #${orderId.slice(-8)}`,
-    description: "View and update order — House of Aarovi admin.",
+    description: "View and update order — Style By Fiza admin.",
     robots: { index: false, follow: false },
   };
 }

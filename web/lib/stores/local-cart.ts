@@ -14,12 +14,13 @@ interface LocalCartItem {
   };
 }
 
-const STORAGE_KEY = "aarovi:cart-items";
+const STORAGE_KEY = "fiza:cart-items";
+const LEGACY_STORAGE_KEY = "aarovi:cart-items";
 
 function readStorage(): LocalCartItem[] {
   if (typeof window === "undefined") return [];
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem(LEGACY_STORAGE_KEY);
     return raw ? JSON.parse(raw) : [];
   } catch {
     return [];

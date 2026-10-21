@@ -73,7 +73,7 @@ export default function NewsletterSection() {
 
           <div className="mx-auto max-w-2xl text-center">
             <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-brand-gold-light">
-              ✦&nbsp;&nbsp;The House of Aarovi Circle&nbsp;&nbsp;✦
+              ✦&nbsp;&nbsp;The Style By Fiza Circle&nbsp;&nbsp;✦
             </p>
             <h2 className="mt-5 font-display text-4xl font-bold leading-tight text-brand-ivory sm:text-5xl">
               Join the{" "}
@@ -82,8 +82,8 @@ export default function NewsletterSection() {
               </span>
             </h2>
             <p className="mx-auto mt-4 max-w-md font-serif text-lg italic leading-relaxed text-brand-ivory/70">
-              Early access to new arrivals, private offers and styling notes —
-              posted from the atelier, never more than once a week.
+              Early access to new drops, private offers and boutique styling notes —
+              never more than once a week.
             </p>
 
             {status === "success" ? (

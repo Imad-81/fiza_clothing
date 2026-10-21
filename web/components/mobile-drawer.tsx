@@ -97,7 +97,7 @@ export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
         {/* Header */}
         <div className="flex items-center justify-between border-b border-brand-primary/10 px-5 py-4">
           <Link href="/" onClick={handleLinkClick}>
-            <img src="/logo.png" alt="House of Aarovi" className="h-11 w-auto object-contain" />
+            <img src="/fiza-logo.png" alt="Style By Fiza" className="h-11 w-auto object-contain" />
           </Link>
           <button
             onClick={onClose}

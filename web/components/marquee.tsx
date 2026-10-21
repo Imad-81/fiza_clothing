@@ -5,11 +5,11 @@ import { useGSAP } from "@gsap/react";
 import { gsap, prefersReducedMotion } from "@/lib/animations";
 
 const items = [
-  "Hand-embroidered in India",
+  "Curated Ready to Wear",
   "Pan-India express delivery",
   "Easy 7-day returns",
-  "Made-to-measure available",
-  "New drops every Friday",
+  "Chic new drops every week",
+  "Effortless everyday elegance",
 ];
 
 function TrackLine({ ariaHidden }: { ariaHidden?: boolean }) {
