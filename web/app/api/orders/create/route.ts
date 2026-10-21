@@ -9,10 +9,13 @@ import {
 import {
   calculateTotals,
   validateAddress,
-  isRazorpayConfigured,
-  createRazorpayOrder,
   type AddressInput,
 } from "@/lib/checkout";
+import {
+  isRazorpayConfigured,
+  createRazorpayOrder,
+} from "@/lib/checkout-server";
+
 
 export const POST = requireAuth(
   withErrorHandler(async (req: Request) => {

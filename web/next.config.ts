@@ -45,6 +45,7 @@ function buildRemotePatterns() {
 }
 
 const nextConfig: NextConfig = {
+  serverExternalPackages: ["@prisma/client", "pg"],
   images: {
     remotePatterns: buildRemotePatterns(),
     localPatterns: [
@@ -56,6 +57,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  experimental: {
+    turbopackPluginRuntimeStrategy: "workerThreads",
+    turbopackFileSystemCacheForDev: false,
+    turbopackMemoryLimit: 512 * 1024 * 1024,
+  },
 };
 
 export default nextConfig;
+

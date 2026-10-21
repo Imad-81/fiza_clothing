@@ -8,7 +8,7 @@ import {
   errorResponse,
   notFoundResponse,
 } from "@/lib/api-response";
-import { verifyRazorpaySignature } from "@/lib/checkout";
+import { verifyRazorpaySignature } from "@/lib/checkout-server";
 import { fetchOrderForEmail } from "@/lib/queries/orders";
 import { isEmailConfigured, sendOrderConfirmationEmail } from "@/lib/email";
 
