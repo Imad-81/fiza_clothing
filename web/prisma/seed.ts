@@ -2,6 +2,8 @@ import "dotenv/config";
 import { Pool } from "pg";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../generated/prisma/client";
+import { hashPassword } from "better-auth/crypto";
+import { randomUUID } from "node:crypto";
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const adapter = new PrismaPg(pool);
@@ -400,6 +402,65 @@ async function main() {
   const categoryCount = await prisma.category.count();
   const featuredCount = await prisma.product.count({ where: { featured: true } });
   console.log(`Seeded ${categoryCount} categories and ${productCount} products (${featuredCount} featured).`);
+
+  console.log("Seeding admin user...");
+  const adminEmail = process.env.ADMIN_EMAIL || "admin@stylebyfiza.com";
+  const adminPassword = process.env.ADMIN_PASSWORD || "Admin@Fiza2026!";
+  const adminName = "Admin Fiza";
+
+  const existingAdmin = await prisma.user.findUnique({
+    where: { email: adminEmail },
+    include: { accounts: true },
+  });
+
+  const hashedPassword = await hashPassword(adminPassword);
+
+  if (!existingAdmin) {
+    const adminId = randomUUID();
+    await prisma.user.create({
+      data: {
+        id: adminId,
+        name: adminName,
+        email: adminEmail,
+        emailVerified: true,
+        role: "ADMIN",
+        accounts: {
+          create: {
+            id: randomUUID(),
+            providerId: "credential",
+            accountId: adminId,
+            password: hashedPassword,
+          },
+        },
+      },
+    });
+    console.log(`Admin user created: ${adminEmail}`);
+  } else {
+    await prisma.user.update({
+      where: { id: existingAdmin.id },
+      data: { role: "ADMIN" },
+    });
+    const credentialAccount = existingAdmin.accounts.find(
+      (a) => a.providerId === "credential",
+    );
+    if (credentialAccount) {
+      await prisma.account.update({
+        where: { id: credentialAccount.id },
+        data: { password: hashedPassword },
+      });
+    } else {
+      await prisma.account.create({
+        data: {
+          id: randomUUID(),
+          userId: existingAdmin.id,
+          providerId: "credential",
+          accountId: existingAdmin.id,
+          password: hashedPassword,
+        },
+      });
+    }
+    console.log(`Admin user updated: ${adminEmail}`);
+  }
 }
 
 main()
