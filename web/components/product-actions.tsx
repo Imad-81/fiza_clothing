@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { addToCart, usePendingCart } from "@/lib/stores/cart";
@@ -30,6 +30,9 @@ export default function ProductActions({
   const [quantity, setQuantity] = useState(1);
   const [sizeChartOpen, setSizeChartOpen] = useState(false);
   const [addedMsg, setAddedMsg] = useState(false);
+  const [showStickyBar, setShowStickyBar] = useState(false);
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const sizeSelectorRef = useRef<HTMLDivElement>(null);
 
   const pending = usePendingCart();
   const wishlistIds = useWishlistIds();
@@ -38,6 +41,19 @@ export default function ProductActions({
 
   const { data: session } = authClient.useSession();
   const loggedIn = !!session;
+
+  useEffect(() => {
+    const el = btnRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowStickyBar(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const handleAddToCart = useCallback(async () => {
     if (!selectedSize || pending) return;
@@ -89,7 +105,7 @@ export default function ProductActions({
       )}
 
       {/* Size selector */}
-      <div>
+      <div ref={sizeSelectorRef}>
         <div className="mb-3 flex items-center justify-between">
           <h3 className="text-sm font-semibold text-brand-text">Size</h3>
           <button
@@ -154,6 +170,7 @@ export default function ProductActions({
 
       {/* Add to cart */}
       <button
+        ref={btnRef}
         onClick={handleAddToCart}
         disabled={disabled}
         className={`w-full rounded-lg py-3 text-sm font-semibold transition-all ${
@@ -194,6 +211,41 @@ export default function ProductActions({
         open={sizeChartOpen}
         onClose={() => setSizeChartOpen(false)}
       />
+
+      {/* Mobile Sticky Add to Cart Bar */}
+      {inStock && (
+        <div
+          className={`fixed inset-x-0 bottom-0 z-40 border-t border-brand-primary/10 bg-white/95 backdrop-blur-md px-4 py-3 shadow-xl transition-all duration-300 lg:hidden pb-[max(0.75rem,env(safe-area-inset-bottom))] ${
+            showStickyBar ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
+          }`}
+        >
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => sizeSelectorRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })}
+              className="flex min-h-[44px] items-center gap-1.5 rounded-lg border border-brand-primary/20 bg-brand-bg px-3.5 py-2 text-xs font-semibold text-brand-primary"
+            >
+              <span>{selectedSize ? `Size: ${selectedSize}` : "Select Size"}</span>
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            <button
+              onClick={() => {
+                if (!selectedSize) {
+                  sizeSelectorRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+                } else {
+                  handleAddToCart();
+                }
+              }}
+              disabled={pending}
+              className="flex-1 min-h-[44px] rounded-lg bg-brand-primary py-2.5 text-center text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-primary/90 disabled:opacity-60"
+            >
+              {pending ? "Adding…" : addedMsg ? "Added to Cart!" : selectedSize ? "Add to Cart" : "Choose Size & Add"}
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

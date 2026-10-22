@@ -176,11 +176,11 @@ export default function ProductCard({ product }: ProductCardProps) {
         <button
           ref={heartRef}
           onClick={handleWishlist}
-          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-brand-ivory/85 shadow-sm backdrop-blur-sm transition-colors hover:bg-brand-ivory"
+          className="absolute right-2 top-2 z-10 flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-brand-ivory/85 shadow-sm backdrop-blur-sm transition-colors hover:bg-brand-ivory"
           aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
         >
           <svg
-            className={`h-5 w-5 transition-colors ${
+            className={`h-4.5 w-4.5 sm:h-5 sm:w-5 transition-colors ${
               wishlisted
                 ? "fill-red-500 text-red-500"
                 : "fill-none text-brand-text/60"
@@ -199,33 +199,35 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         {/* Out of stock badge */}
         {!product.inStock && (
-          <div className="absolute bottom-3 left-3 rounded-full bg-brand-text/80 px-3 py-1 text-xs font-medium text-white">
+          <div className="absolute bottom-2 left-2 rounded-full bg-brand-text/80 px-2.5 py-0.5 text-[10px] sm:text-xs font-medium text-white">
             Out of Stock
           </div>
         )}
       </div>
 
       {/* Info */}
-      <div className="mt-4 space-y-1.5">
-        <h3 className="line-clamp-2 font-serif text-lg leading-snug text-brand-text transition-colors duration-300 group-hover:text-brand-primary">
+      <div className="mt-2.5 sm:mt-4 space-y-1 sm:space-y-1.5">
+        <h3 className="line-clamp-2 font-serif text-sm sm:text-lg leading-snug text-brand-text transition-colors duration-300 group-hover:text-brand-primary">
           {product.name}
         </h3>
-        <div className="flex items-center gap-2">
-          <span className="font-display text-base font-bold text-brand-primary">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <span className="font-display text-sm sm:text-base font-bold text-brand-primary">
             &#8377;{product.price.toLocaleString("en-IN")}
           </span>
           {product.compareAt && product.compareAt > product.price && (
-            <span className="text-xs text-brand-text/50 line-through">
+            <span className="text-[11px] sm:text-xs text-brand-text/50 line-through">
               &#8377;{product.compareAt.toLocaleString("en-IN")}
             </span>
           )}
         </div>
         {product.sizes.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 pt-0.5">
-            {product.sizes.slice(0, 4).map((size) => (
+          <div className="flex flex-wrap gap-1 sm:gap-1.5 pt-0.5">
+            {product.sizes.slice(0, 4).map((size, idx) => (
               <span
                 key={size}
-                className="inline-block border border-brand-primary/15 px-2 py-0.5 font-mono text-[10px] tracking-wider text-brand-text/60"
+                className={`inline-block border border-brand-primary/15 px-1.5 py-0.5 font-mono text-[9px] sm:text-[10px] tracking-wider text-brand-text/60 ${
+                  idx > 2 ? "hidden sm:inline-block" : ""
+                }`}
               >
                 {size}
               </span>

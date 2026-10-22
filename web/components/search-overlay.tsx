@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback, startTransition } from "react";
+import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useFocusTrap } from "@/lib/hooks/use-focus-trap";
+import { useIsMounted } from "@/lib/hooks/use-is-mounted";
 
 interface SearchProduct {
   id: string;
@@ -25,6 +27,7 @@ const MAX_RECENT = 5;
 const DEBOUNCE_MS = 300;
 
 export default function SearchOverlay({ open, onClose }: SearchOverlayProps) {
+  const mounted = useIsMounted();
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const overlayRef = useFocusTrap(open);
@@ -33,27 +36,41 @@ export default function SearchOverlay({ open, onClose }: SearchOverlayProps) {
   const [loading, setLoading] = useState(false);
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
 
+  // Comprehensive iOS Safari & Android scroll lock
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-      startTransition(() => {
-        setQuery("");
-        setResults([]);
-      });
-      try {
-        const stored =
-          localStorage.getItem(STORAGE_KEY) ??
-          localStorage.getItem(LEGACY_STORAGE_KEY);
-        if (stored) startTransition(() => setRecentSearches(JSON.parse(stored)));
-      } catch {
-        /* ignore parse errors */
-      }
-      setTimeout(() => inputRef.current?.focus(), 50);
-    } else {
-      document.body.style.overflow = "";
+    if (!open) return;
+    const scrollY = window.scrollY;
+    const originalOverflow = document.body.style.overflow;
+    const originalPosition = document.body.style.position;
+    const originalTop = document.body.style.top;
+    const originalWidth = document.body.style.width;
+
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+
+    startTransition(() => {
+      setQuery("");
+      setResults([]);
+    });
+    try {
+      const stored =
+        localStorage.getItem(STORAGE_KEY) ??
+        localStorage.getItem(LEGACY_STORAGE_KEY);
+      if (stored) startTransition(() => setRecentSearches(JSON.parse(stored)));
+    } catch {
+      /* ignore parse errors */
     }
+    const timer = setTimeout(() => inputRef.current?.focus(), 80);
+
     return () => {
-      document.body.style.overflow = "";
+      clearTimeout(timer);
+      document.body.style.overflow = originalOverflow;
+      document.body.style.position = originalPosition;
+      document.body.style.top = originalTop;
+      document.body.style.width = originalWidth;
+      window.scrollTo(0, scrollY);
     };
   }, [open]);
 
@@ -147,14 +164,17 @@ export default function SearchOverlay({ open, onClose }: SearchOverlayProps) {
   const showResults = query.trim().length >= 2;
   const showNoResults = showResults && !loading && results.length === 0;
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <div
       ref={overlayRef}
       role="dialog"
       aria-modal="true"
       aria-label="Search products"
-      className={`fixed inset-0 z-[60] flex justify-center bg-black/60 px-4 pt-20 transition-opacity duration-300 ${
-        open ? "opacity-100" : "pointer-events-none opacity-0"
+      aria-hidden={!open}
+      className={`fixed inset-0 z-[110] flex justify-center bg-black/60 backdrop-blur-xs px-4 pt-[max(2.5rem,calc(env(safe-area-inset-top)+1rem))] pb-6 transition-all duration-300 ${
+        open ? "visible opacity-100 pointer-events-auto" : "invisible opacity-0 pointer-events-none"
       }`}
       onClick={onClose}
     >
@@ -211,7 +231,7 @@ export default function SearchOverlay({ open, onClose }: SearchOverlayProps) {
           </form>
 
           {/* Content area */}
-          <div className="max-h-[60vh] overflow-y-auto p-4">
+          <div className="max-h-[60vh] overflow-y-auto overscroll-contain p-4">
             {/* Loading */}
             {loading && (
               <p className="py-6 text-center text-sm text-brand-text/50" aria-live="polite">Searching...</p>
@@ -305,6 +325,7 @@ export default function SearchOverlay({ open, onClose }: SearchOverlayProps) {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

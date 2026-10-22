@@ -121,7 +121,7 @@ export default function NewsletterSection() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="shrink-0 rounded-full bg-[#1F191B] px-8 py-3 font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-[#FAF5F4] transition-colors hover:bg-[#E5C0BA] hover:text-[#1F191B] disabled:opacity-50"
+                  className="shrink-0 min-h-[44px] rounded-full bg-[#1F191B] px-8 py-3 font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-[#FAF5F4] transition-colors hover:bg-[#E5C0BA] hover:text-[#1F191B] disabled:opacity-50"
                 >
                   {status === "loading" ? "Subscribing…" : "Subscribe"}
                 </button>

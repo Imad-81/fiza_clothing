@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { useFocusTrap } from "@/lib/hooks/use-focus-trap";
+import { useIsMounted } from "@/lib/hooks/use-is-mounted";
 
 const womenSubcategories = [
   { label: "Kurtis", href: "/shop/kurtis" },
@@ -24,6 +26,7 @@ interface MobileDrawerProps {
 }
 
 export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
+  const mounted = useIsMounted();
   const drawerRef = useFocusTrap(open);
   const pathname = usePathname();
   const router = useRouter();
@@ -44,14 +47,26 @@ export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
     });
   }, [onClose, router]);
 
+  // Comprehensive iOS Safari & Android scroll lock
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (!open) return;
+    const scrollY = window.scrollY;
+    const originalOverflow = document.body.style.overflow;
+    const originalPosition = document.body.style.position;
+    const originalTop = document.body.style.top;
+    const originalWidth = document.body.style.width;
+
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = originalOverflow;
+      document.body.style.position = originalPosition;
+      document.body.style.top = originalTop;
+      document.body.style.width = originalWidth;
+      window.scrollTo(0, scrollY);
     };
   }, [open]);
 
@@ -73,12 +88,19 @@ export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
     onClose();
   }, [onClose]);
 
-  return (
-    <>
+  if (!mounted) return null;
+
+  return createPortal(
+    <div
+      className={`fixed inset-0 z-[100] lg:hidden transition-all duration-300 ${
+        open ? "visible pointer-events-auto" : "invisible pointer-events-none"
+      }`}
+      aria-hidden={!open}
+    >
       {/* Backdrop overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 lg:hidden ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
+        className={`absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity duration-300 ${
+          open ? "opacity-100" : "opacity-0"
         }`}
         onClick={onClose}
         aria-hidden="true"
@@ -87,21 +109,22 @@ export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
       {/* Drawer panel */}
       <div
         ref={drawerRef}
-        className={`fixed inset-y-0 right-0 z-50 flex w-80 max-w-[85vw] flex-col bg-brand-bg shadow-xl transition-transform duration-300 ease-out lg:hidden ${
+        className={`absolute inset-y-0 right-0 flex w-80 max-w-[85vw] flex-col bg-brand-bg shadow-2xl transition-transform duration-300 ease-out ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
         role="dialog"
         aria-modal="true"
         aria-label="Navigation menu"
       >
-        {/* Header */}
-        <div className="flex items-center justify-between border-b border-brand-primary/10 px-5 py-4">
-          <Link href="/" onClick={handleLinkClick}>
-            <img src="/fiza-logo.png" alt="Style By Fiza" className="h-11 w-auto object-contain" />
+        {/* Header with Safe Area Padding */}
+        <div className="flex items-center justify-between border-b border-brand-primary/10 px-5 py-4 pt-[max(1rem,env(safe-area-inset-top))]">
+          <Link href="/" onClick={handleLinkClick} className="flex items-center min-h-[44px]">
+            <img src="/fiza-logo.png" alt="Style By Fiza" className="h-10 w-auto object-contain" />
           </Link>
           <button
             onClick={onClose}
-            className="rounded-md p-1 text-brand-text transition-colors hover:text-brand-gold"
+            data-autofocus="true"
+            className="flex h-11 w-11 items-center justify-center rounded-md text-brand-text transition-colors hover:text-brand-gold"
             aria-label="Close menu"
           >
             <svg
@@ -121,7 +144,7 @@ export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
         </div>
 
         {/* Navigation links */}
-        <div className="flex-1 overflow-y-auto px-5 py-6">
+        <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-6 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
           <ul className="space-y-1">
             {/* Home */}
             <li>
@@ -335,6 +358,7 @@ export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
           </ul>
         </div>
       </div>
-    </>
+    </div>,
+    document.body
   );
 }

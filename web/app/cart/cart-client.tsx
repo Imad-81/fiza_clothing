@@ -211,18 +211,18 @@ export default function CartPage() {
                       </p>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5 sm:gap-2">
                       <button
                         onClick={() =>
                           handleQuantity(itemKey, -1, item.quantity)
                         }
                         disabled={pending}
-                        className="flex h-7 w-7 items-center justify-center rounded border border-brand-primary/15 text-sm transition-colors hover:bg-brand-bg disabled:opacity-40"
+                        className="flex h-9 w-9 sm:h-8 sm:w-8 items-center justify-center rounded-lg border border-brand-primary/15 text-base sm:text-sm font-semibold transition-colors hover:bg-brand-bg active:scale-95 disabled:opacity-40"
                         aria-label="Decrease quantity"
                       >
                         &minus;
                       </button>
-                      <span className="w-6 text-center text-sm font-medium text-brand-text">
+                      <span className="w-7 text-center text-sm font-semibold text-brand-text">
                         {item.quantity}
                       </span>
                       <button
@@ -230,7 +230,7 @@ export default function CartPage() {
                           handleQuantity(itemKey, 1, item.quantity)
                         }
                         disabled={pending}
-                        className="flex h-7 w-7 items-center justify-center rounded border border-brand-primary/15 text-sm transition-colors hover:bg-brand-bg disabled:opacity-40"
+                        className="flex h-9 w-9 sm:h-8 sm:w-8 items-center justify-center rounded-lg border border-brand-primary/15 text-base sm:text-sm font-semibold transition-colors hover:bg-brand-bg active:scale-95 disabled:opacity-40"
                         aria-label="Increase quantity"
                       >
                         +
@@ -244,7 +244,7 @@ export default function CartPage() {
                       <button
                         onClick={() => handleRemove(itemKey)}
                         disabled={pending}
-                        className="mt-1 text-xs text-red-400 transition-colors hover:text-red-600 disabled:opacity-40"
+                        className="mt-1 min-h-[36px] inline-flex items-center text-xs text-red-500 transition-colors hover:text-red-700 disabled:opacity-40"
                       >
                         Remove
                       </button>
@@ -255,7 +255,7 @@ export default function CartPage() {
             </ul>
           </section>
 
-          <aside>
+          <aside className="pb-24 lg:pb-0">
             <div className="rounded-xl border border-brand-primary/10 bg-white p-6">
               <h2 className="text-lg font-semibold text-brand-primary">
                 Order Summary
@@ -285,12 +285,31 @@ export default function CartPage() {
               <button
                 onClick={() => router.push(loggedIn ? "/place-order" : "/sign-in")}
                 disabled={items.length === 0}
-                className="mt-6 w-full rounded-lg bg-brand-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-6 w-full rounded-lg bg-brand-primary px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-brand-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {loggedIn ? "Place Order" : "Sign In to Order"}
               </button>
             </div>
           </aside>
+
+          {/* Mobile Docked Checkout Bar */}
+          <div className="fixed inset-x-0 bottom-0 z-40 border-t border-brand-primary/10 bg-white/95 backdrop-blur-md px-4 py-3 shadow-lg lg:hidden pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+            <div className="mx-auto flex max-w-md items-center justify-between gap-4">
+              <div>
+                <span className="text-[11px] font-medium uppercase tracking-wider text-brand-text/60">Total</span>
+                <p className="font-display text-lg font-bold text-brand-primary">
+                  {formatMoney(totals.total)}
+                </p>
+              </div>
+              <button
+                onClick={() => router.push(loggedIn ? "/place-order" : "/sign-in")}
+                disabled={items.length === 0}
+                className="flex-1 rounded-xl bg-brand-primary px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-primary/90 disabled:opacity-50"
+              >
+                {loggedIn ? "Place Order →" : "Sign In to Order →"}
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

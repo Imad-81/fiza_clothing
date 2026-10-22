@@ -15,6 +15,7 @@ export default function ProductGallery({ images, name }: ProductGalleryProps) {
   const [zoomed, setZoomed] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const touchStartX = useRef<number | null>(null);
   const hasImages = images.length > 0;
   const currentSrc = images[currentIndex];
 
@@ -26,15 +27,37 @@ export default function ProductGallery({ images, name }: ProductGalleryProps) {
     });
   }, []);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0 && currentIndex < images.length - 1) {
+        setCurrentIndex((i) => i + 1);
+        setImgError(false);
+      } else if (diff < 0 && currentIndex > 0) {
+        setCurrentIndex((i) => i - 1);
+        setImgError(false);
+      }
+    }
+    touchStartX.current = null;
+  };
+
   return (
     <div className="w-full lg:w-1/2">
-      {/* Main image */}
+      {/* Main image with swipe gestures */}
       <div
         ref={containerRef}
-        className="relative aspect-[4/5] overflow-hidden rounded-xl bg-brand-bg"
+        className="relative aspect-[4/5] overflow-hidden rounded-xl bg-brand-bg touch-pan-y"
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setZoomed(true)}
         onMouseLeave={() => setZoomed(false)}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
         {imgError || !hasImages ? (
           <div className="flex h-full w-full items-center justify-center">
@@ -58,6 +81,25 @@ export default function ProductGallery({ images, name }: ProductGalleryProps) {
           />
         )}
       </div>
+
+      {/* Mobile dot indicators */}
+      {images.length > 1 && (
+        <div className="mt-3 flex justify-center gap-1.5 lg:hidden">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => {
+                setCurrentIndex(i);
+                setImgError(false);
+              }}
+              className={`h-1.5 rounded-full transition-all ${
+                i === currentIndex ? "w-6 bg-brand-primary" : "w-1.5 bg-brand-primary/20"
+              }`}
+              aria-label={`Go to image ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Thumbnails */}
       {images.length > 1 && (

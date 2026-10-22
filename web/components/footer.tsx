@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 
 const quickLinks = [
@@ -27,7 +30,7 @@ function SocialIcon({ href, label, children }: { href: string; label: string; ch
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="text-white/60 transition-colors hover:text-brand-gold"
+      className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-white/60 transition-colors hover:text-brand-gold hover:bg-white/10"
     >
       {children}
     </a>
@@ -38,20 +41,49 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
   return (
     <Link
       href={href}
-      className="block text-sm text-white/60 transition-colors hover:text-brand-gold"
+      className="block py-1 text-sm text-white/60 transition-colors hover:text-brand-gold"
     >
       {children}
     </Link>
   );
 }
 
-function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
+function FooterAccordionColumn({
+  title,
+  children,
+  defaultOpen = false,
+}: {
+  title: string;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+
   return (
-    <div>
-      <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-brand-gold">
-        {title}
-      </h3>
-      <ul className="space-y-3">{children}</ul>
+    <div className="border-b border-white/10 pb-4 sm:border-b-0 sm:pb-0">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between py-2 text-left sm:cursor-default sm:py-0"
+        aria-expanded={open}
+      >
+        <h3 className="text-sm font-semibold uppercase tracking-widest text-brand-gold">
+          {title}
+        </h3>
+        <svg
+          className={`h-4 w-4 text-brand-gold transition-transform duration-200 sm:hidden ${
+            open ? "rotate-180" : ""
+          }`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <div className={`mt-3 space-y-3 sm:block ${open ? "block" : "hidden sm:block"}`}>
+        <ul className="space-y-2">{children}</ul>
+      </div>
     </div>
   );
 }
@@ -83,25 +115,25 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <FooterColumn title="Quick Links">
+          <FooterAccordionColumn title="Quick Links">
             {quickLinks.map((link) => (
               <li key={link.label}>
                 <FooterLink href={link.href}>{link.label}</FooterLink>
               </li>
             ))}
-          </FooterColumn>
+          </FooterAccordionColumn>
 
           {/* Policies */}
-          <FooterColumn title="Policies">
+          <FooterAccordionColumn title="Policies">
             {policies.map((link) => (
               <li key={link.label}>
                 <FooterLink href={link.href}>{link.label}</FooterLink>
               </li>
             ))}
-          </FooterColumn>
+          </FooterAccordionColumn>
 
           {/* Support & Contact */}
-          <FooterColumn title="Support">
+          <FooterAccordionColumn title="Support">
             {support.map((link) => (
               <li key={link.label}>
                 <FooterLink href={link.href}>{link.label}</FooterLink>
@@ -129,12 +161,12 @@ export default function Footer() {
               </a>
             </li>
             <li className="text-sm text-white/60">Hyderabad, India</li>
-          </FooterColumn>
+          </FooterAccordionColumn>
         </div>
       </div>
 
-      {/* Copyright bar */}
-      <div className="border-t border-white/10">
+      {/* Copyright bar with safe area inset */}
+      <div className="border-t border-white/10 pb-[max(0rem,env(safe-area-inset-bottom))]">
         <div className="mx-auto max-w-7xl px-4 py-5 text-center text-xs text-white/40 lg:px-8">
           &copy; {new Date().getFullYear()} Style By Fiza. All rights reserved.
         </div>

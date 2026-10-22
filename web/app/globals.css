@@ -45,10 +45,23 @@
   }
 }
 
+html, body {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   background: var(--color-brand-ivory);
   color: var(--color-brand-text);
   font-family: var(--font-sans), sans-serif;
+}
+
+/* Safe area insets */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 ::selection {

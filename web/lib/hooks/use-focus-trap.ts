@@ -15,10 +15,11 @@ export function useFocusTrap(open: boolean) {
     const previouslyFocused = document.activeElement as HTMLElement | null;
 
     const focusableElements = container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR);
+    const autofocusTarget = container.querySelector<HTMLElement>('[data-autofocus="true"]');
     const first = focusableElements[0];
     const last = focusableElements[focusableElements.length - 1];
 
-    first?.focus();
+    (autofocusTarget ?? first)?.focus({ preventScroll: true });
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key !== "Tab") return;

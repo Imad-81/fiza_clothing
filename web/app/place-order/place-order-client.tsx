@@ -390,6 +390,9 @@ export default function PlaceOrderPage() {
   }
 
   const qrImageUrl = paymentSettings?.qrCodeUrl || "";
+  const upiPayUrl = paymentSettings?.upiId
+    ? `upi://pay?pa=${encodeURIComponent(paymentSettings.upiId)}&pn=${encodeURIComponent(paymentSettings.accountName || "Style By Fiza")}&am=${total}&cu=INR&tn=${encodeURIComponent("Style By Fiza Order")}`
+    : "";
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
@@ -567,6 +570,23 @@ export default function PlaceOrderPage() {
                           {copiedUpi ? "Copied!" : "Copy UPI ID"}
                         </button>
                       </div>
+                    </div>
+                  )}
+
+                  {upiPayUrl && (
+                    <div className="mt-4 sm:hidden">
+                      <a
+                        href={upiPayUrl}
+                        className="flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-emerald-700 px-4 py-3 text-center text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-800 active:scale-98"
+                      >
+                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                        Pay {formatMoney(total)} via UPI App
+                      </a>
+                      <p className="mt-1 text-center text-[11px] text-brand-text/60">
+                        Tap to open Google Pay, PhonePe, Paytm, or BHIM
+                      </p>
                     </div>
                   )}
                 </div>

@@ -49,7 +49,6 @@ export default async function CategoryCards() {
               className={`reveal-card group relative overflow-hidden bg-[#EEDCD8] ${
                 tileLayouts[i % tileLayouts.length]
               }`}
-              style={{ clipPath: "inset(0 0 100% 0)" } as React.CSSProperties}
               data-cursor-expand="true"
               data-cursor-label="Shop"
             >

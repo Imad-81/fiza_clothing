@@ -3,13 +3,16 @@
 import { useRef } from "react";
 import Lenis from "lenis";
 import { useGSAP } from "@gsap/react";
-import { gsap, ScrollTrigger } from "@/lib/animations";
+import { gsap, ScrollTrigger, isTouchDevice } from "@/lib/animations";
 
 export default function SmoothScroll() {
   const lenisRef = useRef<Lenis | null>(null);
 
   useGSAP(
     () => {
+      // Preserve native 120Hz momentum scrolling on mobile touch devices
+      if (isTouchDevice()) return;
+
       const lenis = new Lenis({
         duration: 1.2,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

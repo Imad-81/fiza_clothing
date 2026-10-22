@@ -176,7 +176,7 @@ export default function Hero() {
           </div>
         </h1>
 
-        <p className="hero-sub mx-auto mt-6 max-w-xl font-serif text-lg italic leading-relaxed text-[#3B2F31]/80 opacity-0 sm:text-xl">
+        <p className="hero-sub mx-auto mt-6 max-w-xl font-serif text-lg italic leading-relaxed text-[#3B2F31]/80 sm:text-xl">
           Curated contemporary fashion designed for modern silhouettes — from
           everyday statement edits to festive occasion wear.
         </p>
@@ -185,7 +185,7 @@ export default function Hero() {
           <Link
             ref={ctaExploreRef}
             href="/shop/kurtis"
-            className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#1F191B] px-9 font-mono text-xs font-medium uppercase tracking-[0.2em] text-[#FAF5F4] opacity-0 transition-all duration-300 hover:bg-[#E5C0BA] hover:text-[#1F191B] hover:shadow-lg sm:w-auto"
+            className="group inline-flex min-h-[44px] h-12 w-full items-center justify-center gap-2 rounded-full bg-[#1F191B] px-9 font-mono text-xs font-medium uppercase tracking-[0.2em] text-[#FAF5F4] transition-all duration-300 hover:bg-[#E5C0BA] hover:text-[#1F191B] hover:shadow-lg sm:w-auto"
           >
             Explore Collection
             <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -195,7 +195,7 @@ export default function Hero() {
           <Link
             ref={ctaCustomRef}
             href="/shop/collection"
-            className="inline-flex h-12 w-full items-center justify-center rounded-full border border-[#1F191B]/25 bg-white/60 px-9 font-mono text-xs font-medium uppercase tracking-[0.2em] text-[#1F191B] opacity-0 transition-all duration-300 hover:border-[#A85A50] hover:text-[#A85A50] hover:bg-white sm:w-auto"
+            className="inline-flex min-h-[44px] h-12 w-full items-center justify-center rounded-full border border-[#1F191B]/25 bg-white/60 px-9 font-mono text-xs font-medium uppercase tracking-[0.2em] text-[#1F191B] transition-all duration-300 hover:border-[#A85A50] hover:text-[#A85A50] hover:bg-white sm:w-auto"
           >
             View All Pieces
           </Link>

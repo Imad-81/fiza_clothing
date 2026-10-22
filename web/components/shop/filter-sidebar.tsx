@@ -165,7 +165,7 @@ export default function FilterSidebar({
             placeholder="Min"
             value={minPrice}
             onChange={(e) => setPrice("minPrice", e.target.value)}
-            className="w-full rounded-lg border border-brand-primary/15 bg-white px-3 py-1.5 text-sm text-brand-text outline-none focus:border-brand-gold"
+            className="w-full min-h-[44px] rounded-lg border border-brand-primary/15 bg-white px-3 py-2 text-base md:text-sm text-brand-text outline-none focus:border-brand-gold"
           />
           <span className="text-brand-text/40">—</span>
           <input
@@ -174,7 +174,7 @@ export default function FilterSidebar({
             placeholder="Max"
             value={maxPrice}
             onChange={(e) => setPrice("maxPrice", e.target.value)}
-            className="w-full rounded-lg border border-brand-primary/15 bg-white px-3 py-1.5 text-sm text-brand-text outline-none focus:border-brand-gold"
+            className="w-full min-h-[44px] rounded-lg border border-brand-primary/15 bg-white px-3 py-2 text-base md:text-sm text-brand-text outline-none focus:border-brand-gold"
           />
         </div>
       </div>
