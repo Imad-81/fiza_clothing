@@ -8,7 +8,7 @@ import { authClient } from "@/lib/auth-client";
 import { useFocusTrap } from "@/lib/hooks/use-focus-trap";
 import { useIsMounted } from "@/lib/hooks/use-is-mounted";
 
-const womenSubcategories = [
+const defaultWomenSubcategories = [
   { label: "Kurtis", href: "/shop/kurtis" },
   { label: "Kurti-Sets", href: "/shop/kurti-sets" },
   { label: "Anarkalis", href: "/shop/anarkalis" },
@@ -16,16 +16,23 @@ const womenSubcategories = [
   { label: "Sheraras", href: "/shop/sheraras" },
 ];
 
-const menSubcategories = [
+const defaultMenSubcategories = [
   { label: "Kurtas", href: "/shop/kurtas" },
 ];
 
 interface MobileDrawerProps {
   open: boolean;
   onClose: () => void;
+  womenSubcategories?: { label: string; href: string }[];
+  menSubcategories?: { label: string; href: string }[];
 }
 
-export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
+export default function MobileDrawer({
+  open,
+  onClose,
+  womenSubcategories = defaultWomenSubcategories,
+  menSubcategories = defaultMenSubcategories,
+}: MobileDrawerProps) {
   const mounted = useIsMounted();
   const drawerRef = useFocusTrap(open);
   const pathname = usePathname();

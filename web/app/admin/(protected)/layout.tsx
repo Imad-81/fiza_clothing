@@ -17,9 +17,9 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-1 gap-8 px-4 py-10 sm:px-6">
+    <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col md:flex-row gap-6 md:gap-8 px-4 py-6 md:py-10 sm:px-6">
       <AdminSidebar userEmail={session.user.email} />
-      <div className="flex-1">{children}</div>
+      <div className="flex-1 min-w-0">{children}</div>
     </div>
   );
 }

@@ -51,7 +51,7 @@ export default async function AdminDashboardPage() {
         ))}
       </div>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+      <div className="mt-8 grid gap-4 sm:grid-cols-3">
         <Link
           href="/admin/products"
           className="rounded-xl border border-brand-primary/15 bg-brand-bg p-6 transition-colors hover:border-brand-gold"
@@ -60,7 +60,19 @@ export default async function AdminDashboardPage() {
             Products
           </h2>
           <p className="mt-1 text-sm text-brand-text/60">
-            Manage your product catalog.
+            {totalProducts} products in catalog.
+          </p>
+        </Link>
+
+        <Link
+          href="/admin/categories"
+          className="rounded-xl border border-brand-primary/15 bg-brand-bg p-6 transition-colors hover:border-brand-gold"
+        >
+          <h2 className="font-display text-lg font-bold text-brand-primary">
+            Categories
+          </h2>
+          <p className="mt-1 text-sm text-brand-text/60">
+            {categories} customizable categories.
           </p>
         </Link>
 

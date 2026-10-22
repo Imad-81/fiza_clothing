@@ -12,7 +12,7 @@ import { useWishlistCount, fetchWishlist, resetWishlist } from "@/lib/stores/wis
 import { useCartCount, fetchCart, resetCart } from "@/lib/stores/cart";
 import { useLocalCartCount } from "@/lib/stores/local-cart";
 
-const womenSubcategories = [
+const defaultWomenSubcategories = [
   { label: "Kurtis", href: "/shop/kurtis" },
   { label: "Kurti-Sets", href: "/shop/kurti-sets" },
   { label: "Anarkalis", href: "/shop/anarkalis" },
@@ -20,7 +20,7 @@ const womenSubcategories = [
   { label: "Sheraras", href: "/shop/sheraras" },
 ];
 
-const menSubcategories = [
+const defaultMenSubcategories = [
   { label: "Kurtas", href: "/shop/kurtas" },
 ];
 
@@ -34,6 +34,7 @@ export default function Navbar() {
   );
   const [accountOpen, setAccountOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [dbCategories, setDbCategories] = useState<{ name: string; slug: string; gender: string }[]>([]);
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const headerRef = useRef<HTMLElement>(null);
   const overlayOpenRef = useRef(false);
@@ -46,6 +47,35 @@ export default function Navbar() {
   const [isAdmin, setIsAdmin] = useState(false);
   const loggedIn = !!session;
   const cartCount = loggedIn ? serverCartCount : localCartCount;
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/categories")
+      .then((r) => r.json())
+      .then((j) => {
+        if (!cancelled && j.success && Array.isArray(j.data) && j.data.length > 0) {
+          setDbCategories(j.data);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const womenSubcategories =
+    dbCategories.length > 0
+      ? dbCategories
+          .filter((c) => c.gender?.toLowerCase() === "women")
+          .map((c) => ({ label: c.name, href: `/shop/${c.slug}` }))
+      : defaultWomenSubcategories;
+
+  const menSubcategories =
+    dbCategories.length > 0
+      ? dbCategories
+          .filter((c) => c.gender?.toLowerCase() === "men")
+          .map((c) => ({ label: c.name, href: `/shop/${c.slug}` }))
+      : defaultMenSubcategories;
 
   useEffect(() => {
     if (!session) return;
@@ -464,6 +494,8 @@ export default function Navbar() {
       <MobileDrawer
         open={mobileOpen}
         onClose={() => setMobileOpen(false)}
+        womenSubcategories={womenSubcategories}
+        menSubcategories={menSubcategories}
       />
     </>
   );
