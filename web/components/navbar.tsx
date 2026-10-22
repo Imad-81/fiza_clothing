@@ -268,16 +268,6 @@ export default function Navbar() {
             {renderDropdown("men", menSubcategories)}
             <li>
               <Link
-                href="/customize"
-                className={`text-sm font-medium uppercase tracking-wider transition-colors hover:text-brand-gold ${
-                  isActive("/customize") ? "text-brand-gold" : "text-brand-text"
-                }`}
-              >
-                CUSTOMIZE
-              </Link>
-            </li>
-            <li>
-              <Link
                 href="/about"
                 className={`text-sm font-medium uppercase tracking-wider transition-colors hover:text-brand-gold ${
                   isActive("/about") ? "text-brand-gold" : "text-brand-text"

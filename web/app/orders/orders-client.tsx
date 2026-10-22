@@ -68,14 +68,20 @@ const formatMoney = (n: number) =>
 
 const truncateId = (id: string) => id.slice(-8);
 
+// Flag to enable/disable customize feature on storefront (kept for future use)
+const SHOW_CUSTOMIZE = false;
+
 export default function OrdersPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { data: session } = authClient.useSession();
   const loggedIn = !!session;
 
-  const tabParam = searchParams.get("tab") === "customize" ? "customize" : "orders";
-  const idParam = searchParams.get("id");
+  const tabParam =
+    SHOW_CUSTOMIZE && searchParams.get("tab") === "customize"
+      ? "customize"
+      : "orders";
+  const idParam = SHOW_CUSTOMIZE ? searchParams.get("id") : null;
 
   const [activeTab, setActiveTab] = useState<"orders" | "customize">(tabParam);
   const [prevTabParam, setPrevTabParam] = useState(tabParam);
@@ -87,7 +93,7 @@ export default function OrdersPage() {
   const [orders, setOrders] = useState<OrderData[]>([]);
   const [customizations, setCustomizations] = useState<CustomizationRequestData[]>([]);
   const [loadingOrders, setLoadingOrders] = useState(true);
-  const [loadingCustomizations, setLoadingCustomizations] = useState(true);
+  const [loadingCustomizations, setLoadingCustomizations] = useState(SHOW_CUSTOMIZE);
   const [errorOrders, setErrorOrders] = useState(false);
   const [errorCustomizations, setErrorCustomizations] = useState(false);
   const [retryKey, setRetryKey] = useState(0);
@@ -135,7 +141,7 @@ export default function OrdersPage() {
 
   // Fetch customization requests
   useEffect(() => {
-    if (!loggedIn) return;
+    if (!loggedIn || !SHOW_CUSTOMIZE) return;
 
     let cancelled = false;
 
@@ -193,58 +199,62 @@ export default function OrdersPage() {
           My Orders
         </h1>
         <p className="mt-1 text-sm text-brand-text/60">
-          Track ready-to-wear orders and custom cloth atelier briefs.
+          {SHOW_CUSTOMIZE
+            ? "Track ready-to-wear orders and custom cloth atelier briefs."
+            : "Track and review your purchases and order history."}
         </p>
       </div>
 
-      {/* Tabs Switcher */}
-      <div className="mb-8 border-b border-brand-primary/10">
-        <nav className="-mb-px flex gap-6" aria-label="Tabs">
-          <button
-            onClick={() => setActiveTab("orders")}
-            className={`flex items-center gap-2 border-b-2 pb-4 text-sm font-medium transition-colors ${
-              activeTab === "orders"
-                ? "border-brand-primary text-brand-primary font-semibold"
-                : "border-transparent text-brand-text/60 hover:border-brand-primary/30 hover:text-brand-text"
-            }`}
-          >
-            <span>Ready-to-Wear Orders</span>
-            {!loadingOrders && !errorOrders && (
-              <span
-                className={`rounded-full px-2 py-0.5 text-xs ${
-                  activeTab === "orders"
-                    ? "bg-brand-primary text-white"
-                    : "bg-brand-primary/10 text-brand-text/70"
-                }`}
-              >
-                {orders.length}
-              </span>
-            )}
-          </button>
+      {/* Tabs Switcher (kept for future use when customize is re-enabled) */}
+      {SHOW_CUSTOMIZE && (
+        <div className="mb-8 border-b border-brand-primary/10">
+          <nav className="-mb-px flex gap-6" aria-label="Tabs">
+            <button
+              onClick={() => setActiveTab("orders")}
+              className={`flex items-center gap-2 border-b-2 pb-4 text-sm font-medium transition-colors ${
+                activeTab === "orders"
+                  ? "border-brand-primary text-brand-primary font-semibold"
+                  : "border-transparent text-brand-text/60 hover:border-brand-primary/30 hover:text-brand-text"
+              }`}
+            >
+              <span>Ready-to-Wear Orders</span>
+              {!loadingOrders && !errorOrders && (
+                <span
+                  className={`rounded-full px-2 py-0.5 text-xs ${
+                    activeTab === "orders"
+                      ? "bg-brand-primary text-white"
+                      : "bg-brand-primary/10 text-brand-text/70"
+                  }`}
+                >
+                  {orders.length}
+                </span>
+              )}
+            </button>
 
-          <button
-            onClick={() => setActiveTab("customize")}
-            className={`flex items-center gap-2 border-b-2 pb-4 text-sm font-medium transition-colors ${
-              activeTab === "customize"
-                ? "border-brand-primary text-brand-primary font-semibold"
-                : "border-transparent text-brand-text/60 hover:border-brand-primary/30 hover:text-brand-text"
-            }`}
-          >
-            <span>Customize Cloth</span>
-            {!loadingCustomizations && !errorCustomizations && (
-              <span
-                className={`rounded-full px-2 py-0.5 text-xs ${
-                  activeTab === "customize"
-                    ? "bg-brand-primary text-white"
-                    : "bg-brand-primary/10 text-brand-text/70"
-                }`}
-              >
-                {customizations.length}
-              </span>
-            )}
-          </button>
-        </nav>
-      </div>
+            <button
+              onClick={() => setActiveTab("customize")}
+              className={`flex items-center gap-2 border-b-2 pb-4 text-sm font-medium transition-colors ${
+                activeTab === "customize"
+                  ? "border-brand-primary text-brand-primary font-semibold"
+                  : "border-transparent text-brand-text/60 hover:border-brand-primary/30 hover:text-brand-text"
+              }`}
+            >
+              <span>Customize Cloth</span>
+              {!loadingCustomizations && !errorCustomizations && (
+                <span
+                  className={`rounded-full px-2 py-0.5 text-xs ${
+                    activeTab === "customize"
+                      ? "bg-brand-primary text-white"
+                      : "bg-brand-primary/10 text-brand-text/70"
+                  }`}
+                >
+                  {customizations.length}
+                </span>
+              )}
+            </button>
+          </nav>
+        </div>
+      )}
 
       {/* Skeleton Loading */}
       {isLoading && <OrdersSkeleton />}
@@ -348,8 +358,8 @@ export default function OrdersPage() {
         </>
       )}
 
-      {/* Customize Cloth Tab Content */}
-      {activeTab === "customize" && !isLoading && !isError && (
+      {/* Customize Cloth Tab Content (preserved for future use) */}
+      {SHOW_CUSTOMIZE && activeTab === "customize" && !isLoading && !isError && (
         <>
           {customizations.length === 0 ? (
             <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-brand-primary/15 py-20 text-center">
@@ -444,11 +454,13 @@ export default function OrdersPage() {
         </>
       )}
 
-      {/* Details Modal */}
-      <CustomizeDetailsModal
-        requestId={selectedCustomizeId}
-        onClose={() => setSelectedCustomizeId(null)}
-      />
+      {/* Details Modal (preserved for future use) */}
+      {SHOW_CUSTOMIZE && selectedCustomizeId && (
+        <CustomizeDetailsModal
+          requestId={selectedCustomizeId}
+          onClose={() => setSelectedCustomizeId(null)}
+        />
+      )}
     </div>
   );
 }

@@ -288,15 +288,6 @@ export default function MobileDrawer({
             </li>
             <li>
               <Link
-                href="/customize"
-                onClick={handleLinkClick}
-                className="block rounded-md px-3 py-2.5 text-sm font-medium uppercase tracking-wider text-brand-text transition-colors hover:bg-brand-primary/5"
-              >
-                Customize
-              </Link>
-            </li>
-            <li>
-              <Link
                 href="/contact"
                 onClick={handleLinkClick}
                 className="block rounded-md px-3 py-2.5 text-sm font-medium uppercase tracking-wider text-brand-text transition-colors hover:bg-brand-primary/5"

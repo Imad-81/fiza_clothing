@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Brief Submitted — Style By Fiza",
@@ -7,11 +8,18 @@ export const metadata: Metadata = {
     "Your bespoke customization brief has been submitted. We will review it and get back to you within 48 hours.",
 };
 
+// Feature temporarily removed from customer-facing frontend; preserved for future use.
+const ENABLE_CUSTOMIZE_FRONTEND = false;
+
 export default async function ConfirmationPage({
   searchParams,
 }: {
   searchParams: Promise<{ id?: string }>;
 }) {
+  if (!ENABLE_CUSTOMIZE_FRONTEND) {
+    redirect("/orders");
+  }
+
   const { id } = await searchParams;
 
   return (
