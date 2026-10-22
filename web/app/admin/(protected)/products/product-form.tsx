@@ -368,10 +368,10 @@ export function ProductForm({ mode, initialData, productId }: ProductFormProps) 
               key={size}
               type="button"
               onClick={() => toggleSize(size)}
-              className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors ${
+              className={`rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors min-h-[42px] min-w-[48px] ${
                 form.sizes.includes(size)
-                  ? "border-brand-primary bg-brand-primary text-white"
-                  : "border-brand-primary/15 text-brand-text/70 hover:border-brand-primary/30"
+                  ? "border-brand-primary bg-brand-primary text-white shadow-xs"
+                  : "border-brand-primary/15 bg-white text-brand-text/70 hover:border-brand-primary/30 active:bg-brand-primary/5"
               }`}
             >
               {size}
@@ -392,7 +392,7 @@ export function ProductForm({ mode, initialData, productId }: ProductFormProps) 
           step="1"
           value={form.stock}
           onChange={(e) => set("stock", e.target.value)}
-          className="w-full rounded-lg border border-brand-primary/15 bg-brand-bg px-4 py-2.5 text-sm text-brand-text outline-none transition-colors focus:border-brand-gold"
+          className="w-full rounded-lg border border-brand-primary/15 bg-brand-bg px-4 py-2.5 text-sm text-brand-text outline-none transition-colors focus:border-brand-gold min-h-[44px]"
         />
         {fieldErrors.stock && (
           <p className="mt-1 text-xs text-red-500">{fieldErrors.stock[0]}</p>
@@ -400,27 +400,30 @@ export function ProductForm({ mode, initialData, productId }: ProductFormProps) 
       </div>
 
       {/* Featured */}
-      <div>
+      <div className="rounded-xl border border-brand-primary/15 bg-white p-3.5">
         <label className="flex cursor-pointer items-center gap-3">
           <input
             type="checkbox"
             checked={form.featured}
             onChange={(e) => set("featured", e.target.checked)}
-            className="h-4 w-4 rounded border-brand-primary/15 text-brand-primary focus:ring-brand-gold"
+            className="h-5 w-5 rounded border-brand-primary/20 text-brand-primary focus:ring-brand-gold"
           />
-          <span className="text-sm font-medium text-brand-text">Featured product</span>
+          <div>
+            <span className="text-sm font-semibold text-brand-text">Featured product</span>
+            <p className="text-xs text-brand-text/50">Showcase this item on the homepage featured collection</p>
+          </div>
         </label>
       </div>
 
       {/* Images */}
       <div>
         <label className="mb-2 block text-sm font-medium text-brand-text">
-          Images
+          Product Images
         </label>
 
         <div className="flex flex-wrap gap-3">
           {form.images.map((url, i) => (
-            <div key={i} className="relative h-24 w-24 overflow-hidden rounded-lg border border-brand-primary/15">
+            <div key={i} className="relative h-24 w-24 overflow-hidden rounded-lg border border-brand-primary/15 bg-white shadow-2xs">
               <img
                 src={url}
                 alt=""
@@ -429,14 +432,15 @@ export function ProductForm({ mode, initialData, productId }: ProductFormProps) 
               <button
                 type="button"
                 onClick={() => removeImage(i)}
-                className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white hover:bg-red-600"
+                className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-red-600 text-xs text-white shadow-sm hover:bg-red-700"
+                title="Remove image"
               >
                 ×
               </button>
             </div>
           ))}
 
-          <label className="flex h-24 w-24 cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-brand-primary/15 bg-brand-bg text-2xl text-brand-text/30 transition-colors hover:border-brand-gold hover:text-brand-gold">
+          <label className="flex h-24 w-24 cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-brand-primary/25 bg-brand-bg text-2xl text-brand-text/40 transition-colors hover:border-brand-gold hover:text-brand-gold active:bg-brand-primary/5">
             <span>{uploading ? "…" : "+"}</span>
             <input
               type="file"
@@ -450,22 +454,22 @@ export function ProductForm({ mode, initialData, productId }: ProductFormProps) 
         </div>
       </div>
 
-      {/* Submit */}
-      <div className="flex items-center gap-3 pt-2">
-        <button
-          type="submit"
-          disabled={saving}
-          className="rounded-lg bg-brand-primary px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-primary/90 disabled:opacity-60"
-        >
-          {saving ? "Saving…" : mode === "create" ? "Create Product" : "Save Changes"}
-        </button>
-
+      {/* Submit / Cancel Actions */}
+      <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center gap-3 pt-3 border-t border-brand-primary/10">
         <button
           type="button"
           onClick={() => router.push("/admin/products")}
-          className="rounded-lg px-4 py-2.5 text-sm font-medium text-brand-text/60 transition-colors hover:text-brand-primary"
+          className="rounded-lg border border-brand-primary/15 bg-white px-5 py-3 text-center text-sm font-semibold text-brand-text/70 transition-colors hover:bg-brand-primary/5 min-h-[46px]"
         >
-          Cancel
+          Cancel & Return to Products
+        </button>
+
+        <button
+          type="submit"
+          disabled={saving}
+          className="rounded-lg bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-brand-primary/90 disabled:opacity-60 min-h-[46px]"
+        >
+          {saving ? "Saving…" : mode === "create" ? "Create Product" : "Save Changes"}
         </button>
       </div>
     </form>

@@ -89,7 +89,7 @@ export default async function AdminCustomizeDetailPage({ params }: Props) {
     <div>
       <Link
         href="/admin/customize"
-        className="mb-6 inline-flex items-center gap-1 text-sm text-brand-text/60 transition-colors hover:text-brand-primary"
+        className="mb-4 inline-flex items-center gap-1.5 rounded-lg border border-brand-primary/15 bg-white px-3 py-1.5 text-xs font-semibold text-brand-primary transition-colors hover:border-brand-gold hover:bg-brand-primary/5 min-h-[36px]"
       >
         <span aria-hidden>&larr;</span> Back to briefs
       </Link>

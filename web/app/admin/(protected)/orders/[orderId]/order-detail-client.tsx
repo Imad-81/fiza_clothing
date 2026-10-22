@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import {
   WRITABLE_STATUSES,
   type TimelineStep,
@@ -184,12 +185,12 @@ export function OrderDetailClient({ initialData }: OrderDetailClientProps) {
                 Please verify the customer&apos;s Transaction ID or payment screenshot against your bank account. Once verified, click below to confirm the order and notify the customer.
               </p>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
               <button
                 type="button"
                 disabled={saving}
                 onClick={() => updateStatusTo("confirmed")}
-                className="rounded-xl bg-green-700 px-5 py-2.5 text-xs font-bold text-white shadow-sm transition-all hover:bg-green-800 disabled:opacity-60"
+                className="w-full sm:w-auto rounded-xl bg-green-700 px-5 py-3 text-xs font-bold text-white shadow-sm transition-all hover:bg-green-800 disabled:opacity-60 min-h-[44px]"
               >
                 {saving ? "Confirming..." : "✓ Verify & Confirm Order"}
               </button>
@@ -205,7 +206,7 @@ export function OrderDetailClient({ initialData }: OrderDetailClientProps) {
                     updateStatusTo("cancelled");
                   }
                 }}
-                className="rounded-xl border border-red-300 bg-white px-4 py-2.5 text-xs font-semibold text-red-600 transition-colors hover:bg-red-50 disabled:opacity-60"
+                className="w-full sm:w-auto rounded-xl border border-red-300 bg-white px-4 py-3 text-xs font-semibold text-red-600 transition-colors hover:bg-red-50 disabled:opacity-60 min-h-[44px]"
               >
                 ✕ Cancel Order
               </button>
@@ -431,7 +432,7 @@ export function OrderDetailClient({ initialData }: OrderDetailClientProps) {
         <h2 className="font-display text-lg font-bold text-brand-primary">
           Update status
         </h2>
-        <form onSubmit={handleUpdateStatus} className="mt-3 flex flex-wrap items-start gap-3">
+        <form onSubmit={handleUpdateStatus} className="mt-3 flex flex-col sm:flex-row items-stretch sm:items-start gap-3">
           <div className="flex-1">
             <select
               value={status}
@@ -443,7 +444,7 @@ export function OrderDetailClient({ initialData }: OrderDetailClientProps) {
                   return copy;
                 });
               }}
-              className="w-full rounded-lg border border-brand-primary/15 bg-white px-4 py-2.5 text-sm text-brand-text outline-none transition-colors focus:border-brand-gold"
+              className="w-full rounded-lg border border-brand-primary/15 bg-white px-4 py-2.5 text-sm text-brand-text outline-none transition-colors focus:border-brand-gold min-h-[44px]"
             >
               {WRITABLE_STATUSES.map((s) => (
                 <option key={s} value={s}>
@@ -460,7 +461,7 @@ export function OrderDetailClient({ initialData }: OrderDetailClientProps) {
           <button
             type="submit"
             disabled={saving || status === initialData.status}
-            className="rounded-lg bg-brand-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-primary/90 disabled:opacity-60"
+            className="w-full sm:w-auto rounded-lg bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-primary/90 disabled:opacity-60 min-h-[44px]"
           >
             {saving ? "Saving…" : "Update status"}
           </button>
@@ -575,15 +576,32 @@ export function OrderDetailClient({ initialData }: OrderDetailClientProps) {
                     </div>
                   )}
                 </div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-brand-primary">
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-brand-primary truncate">
                     {item.product.name}
                   </p>
                   <p className="mt-0.5 text-xs text-brand-text/60">
                     Size: {item.size} &middot; Qty: {item.quantity}
                   </p>
+                  <div className="mt-1 flex items-center gap-2 text-xs">
+                    <Link
+                      href={`/shop/${item.product.slug}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-gold hover:underline font-medium"
+                    >
+                      View on Store &rarr;
+                    </Link>
+                    <span className="text-brand-text/20">·</span>
+                    <Link
+                      href={`/admin/products/${item.product.id}/edit`}
+                      className="text-brand-text/60 hover:text-brand-primary font-medium"
+                    >
+                      Edit Product
+                    </Link>
+                  </div>
                 </div>
-                <p className="text-sm font-semibold text-brand-text">
+                <p className="text-sm font-semibold text-brand-text shrink-0">
                   {formatMoney(item.price * item.quantity)}
                 </p>
               </li>

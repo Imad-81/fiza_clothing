@@ -4,7 +4,6 @@ import { withErrorHandler } from "@/lib/with-error-handler";
 import { successResponse } from "@/lib/api-response";
 import {
   ORDER_STATUSES,
-  statusLabel,
   adminStatusLabel,
   statusBadgeColor,
 } from "@/lib/order-status";

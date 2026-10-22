@@ -2,6 +2,7 @@
 
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 
 function AdminSignInForm() {
@@ -75,7 +76,7 @@ function AdminSignInForm() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-lg border border-brand-primary/15 bg-brand-bg px-4 py-2.5 text-sm text-brand-text outline-none transition-colors focus:border-brand-gold"
+            className="w-full rounded-lg border border-brand-primary/15 bg-brand-bg px-4 py-2.5 text-sm text-brand-text outline-none transition-colors focus:border-brand-gold min-h-[44px]"
             placeholder="admin@example.com"
             autoComplete="email"
           />
@@ -90,7 +91,7 @@ function AdminSignInForm() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-lg border border-brand-primary/15 bg-brand-bg px-4 py-2.5 text-sm text-brand-text outline-none transition-colors focus:border-brand-gold"
+            className="w-full rounded-lg border border-brand-primary/15 bg-brand-bg px-4 py-2.5 text-sm text-brand-text outline-none transition-colors focus:border-brand-gold min-h-[44px]"
             placeholder="Enter your password"
             autoComplete="current-password"
           />
@@ -105,10 +106,19 @@ function AdminSignInForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-lg bg-brand-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
+          className="w-full rounded-lg bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-brand-primary/90 disabled:cursor-not-allowed disabled:opacity-60 min-h-[46px]"
         >
-          {loading ? "Signing in…" : "Sign In"}
+          {loading ? "Signing in…" : "Sign In to Admin"}
         </button>
+
+        <div className="text-center pt-2">
+          <Link
+            href="/"
+            className="text-xs text-brand-text/50 hover:text-brand-primary transition-colors hover:underline"
+          >
+            &larr; Return to Style By Fiza storefront
+          </Link>
+        </div>
       </form>
     </div>
   );

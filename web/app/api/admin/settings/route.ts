@@ -1,6 +1,6 @@
 import { requireAdmin } from "@/lib/api-require-admin";
 import { withErrorHandler } from "@/lib/with-error-handler";
-import { successResponse, errorResponse } from "@/lib/api-response";
+import { successResponse } from "@/lib/api-response";
 import { getPaymentSettings, setSetting } from "@/lib/settings";
 
 const getSettings = async () => {

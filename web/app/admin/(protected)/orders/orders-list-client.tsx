@@ -89,54 +89,164 @@ export function OrdersListClient({
   const totalPages = Math.ceil(total / limit);
 
   return (
-    <div className="mt-6">
-      <form onSubmit={handleFilter} className="mb-4 flex flex-wrap gap-2">
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search by order id or customer…"
-          className="flex-1 rounded-lg border border-brand-primary/15 bg-brand-bg px-4 py-2 text-sm text-brand-text outline-none transition-colors focus:border-brand-gold"
-        />
-        <select
-          value={statusFilter}
-          onChange={(e) => {
-            setStatusFilter(e.target.value);
-            setPage(1);
-            fetchOrders(search, e.target.value, 1);
-          }}
-          className="rounded-lg border border-brand-primary/15 bg-brand-bg px-3 py-2 text-sm text-brand-text outline-none transition-colors focus:border-brand-gold"
-        >
-          <option value="">All statuses</option>
-          <option value="pending">Pending Verification</option>
-          {ORDER_STATUSES.filter((s) => s !== "pending").map((s) => (
-            <option key={s} value={s}>
-              {s.replace(/_/g, " ").replace(/^\w/, (c) => c.toUpperCase())}
-            </option>
-          ))}
-          <option value="cancelled">Cancelled</option>
-        </select>
-        <button
-          type="submit"
-          disabled={loading}
-          className="rounded-lg bg-brand-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-primary/90 disabled:opacity-60"
-        >
-          {loading ? "…" : "Search"}
-        </button>
+    <div className="mt-6 space-y-4">
+      {/* Search & Filter Bar */}
+      <form onSubmit={handleFilter} className="flex flex-col sm:flex-row gap-2">
+        <div className="relative flex-1">
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search by order ID, customer name or email…"
+            className="w-full rounded-lg border border-brand-primary/15 bg-brand-bg pl-9 pr-4 py-2.5 text-sm text-brand-text outline-none transition-colors focus:border-brand-gold min-h-[42px]"
+          />
+          <svg
+            className="absolute left-3 top-3 h-4 w-4 text-brand-text/40"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+
+        <div className="flex gap-2">
+          <select
+            value={statusFilter}
+            onChange={(e) => {
+              setStatusFilter(e.target.value);
+              setPage(1);
+              fetchOrders(search, e.target.value, 1);
+            }}
+            className="flex-1 sm:flex-none rounded-lg border border-brand-primary/15 bg-brand-bg px-3 py-2.5 text-sm text-brand-text outline-none transition-colors focus:border-brand-gold min-h-[42px]"
+          >
+            <option value="">All statuses</option>
+            <option value="pending">Pending Verification</option>
+            {ORDER_STATUSES.filter((s) => s !== "pending").map((s) => (
+              <option key={s} value={s}>
+                {s.replace(/_/g, " ").replace(/^\w/, (c) => c.toUpperCase())}
+              </option>
+            ))}
+            <option value="cancelled">Cancelled</option>
+          </select>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="rounded-lg bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-brand-primary/90 disabled:opacity-60 min-h-[42px]"
+          >
+            {loading ? "…" : "Search"}
+          </button>
+        </div>
       </form>
 
-      <div className="overflow-x-auto rounded-xl border border-brand-primary/15">
+      {/* Mobile Card View (< md) */}
+      <div className="block md:hidden space-y-3">
+        {orders.map((order) => {
+          const isPending = order.status === "pending";
+
+          return (
+            <div
+              key={order.id}
+              onClick={() => router.push(`/admin/orders/${order.id}`)}
+              className={`cursor-pointer rounded-xl border p-4 transition-all active:scale-[0.99] ${
+                isPending
+                  ? "border-amber-300 bg-amber-50/50 hover:bg-amber-50"
+                  : "border-brand-primary/15 bg-white hover:border-brand-gold"
+              }`}
+            >
+              {/* Top row: ID + Status */}
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1.5 min-w-0">
+                  <span className="font-mono text-xs font-bold text-brand-primary">
+                    #{order.id.slice(-8)}
+                  </span>
+                  <span className="text-[11px] text-brand-text/50">· {formatDate(order.createdAt)}</span>
+                </div>
+                <span
+                  className={`inline-block shrink-0 rounded-full border px-2.5 py-0.5 text-[11px] font-semibold ${
+                    order.badgeColor ?? statusBadgeColor(order.status)
+                  }`}
+                >
+                  {order.statusLabel}
+                </span>
+              </div>
+
+              {/* Customer */}
+              <div className="mt-2.5">
+                <p className="text-sm font-semibold text-brand-text truncate">
+                  {order.userName || "Customer"}
+                </p>
+                {order.userEmail && (
+                  <p className="text-xs text-brand-text/60 truncate">
+                    {order.userEmail}
+                  </p>
+                )}
+              </div>
+
+              {/* Items & Payment row */}
+              <div className="mt-3 flex items-center justify-between border-t border-brand-primary/10 pt-2.5 text-xs text-brand-text/70">
+                <div className="flex items-center gap-2">
+                  <span>
+                    {order.itemCount} {order.itemCount === 1 ? "item" : "items"}
+                  </span>
+                  <span>·</span>
+                  <span className="font-medium">
+                    {order.paymentMethod === "UPI_QR" ? "UPI QR" : order.paymentMethod}
+                  </span>
+                  {order.paymentProof && (
+                    <span className="rounded bg-brand-gold/15 px-1.5 py-0.5 text-[10px] font-semibold text-brand-gold">
+                      📷 Proof
+                    </span>
+                  )}
+                </div>
+
+                <span className="font-display text-base font-bold text-brand-primary">
+                  {formatMoney(order.total)}
+                </span>
+              </div>
+
+              {/* Action Button */}
+              <div className="mt-3 pt-2 border-t border-brand-primary/5">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    router.push(`/admin/orders/${order.id}`);
+                  }}
+                  className={`w-full rounded-lg py-2 text-xs font-bold transition-all min-h-[38px] ${
+                    isPending
+                      ? "bg-amber-600 text-white hover:bg-amber-700 shadow-xs"
+                      : "bg-brand-primary/10 text-brand-primary hover:bg-brand-primary hover:text-white"
+                  }`}
+                >
+                  {isPending ? "⚠️ Verify Payment Now &rarr;" : "View Order Details &rarr;"}
+                </button>
+              </div>
+            </div>
+          );
+        })}
+
+        {orders.length === 0 && (
+          <div className="rounded-xl border border-brand-primary/15 bg-brand-bg p-8 text-center text-sm text-brand-text/50">
+            No orders found matching your search.
+          </div>
+        )}
+      </div>
+
+      {/* Desktop Table View (>= md) */}
+      <div className="hidden md:block overflow-x-auto rounded-xl border border-brand-primary/15 bg-white">
         <table className="w-full text-left text-sm">
           <thead>
             <tr className="border-b border-brand-primary/15 bg-brand-primary/5">
-              <th className="px-3 py-2 font-medium text-brand-text/70">Order</th>
-              <th className="px-3 py-2 font-medium text-brand-text/70">Customer</th>
-              <th className="px-3 py-2 font-medium text-brand-text/70">Date</th>
-              <th className="px-3 py-2 font-medium text-brand-text/70">Items</th>
-              <th className="px-3 py-2 font-medium text-brand-text/70">Total</th>
-              <th className="px-3 py-2 font-medium text-brand-text/70">Payment</th>
-              <th className="px-3 py-2 font-medium text-brand-text/70">Status</th>
-              <th className="px-3 py-2 font-medium text-brand-text/70">Actions</th>
+              <th className="px-4 py-3 font-semibold text-brand-primary">Order</th>
+              <th className="px-4 py-3 font-semibold text-brand-primary">Customer</th>
+              <th className="px-4 py-3 font-semibold text-brand-primary">Date</th>
+              <th className="px-4 py-3 font-semibold text-brand-primary">Items</th>
+              <th className="px-4 py-3 font-semibold text-brand-primary">Total</th>
+              <th className="px-4 py-3 font-semibold text-brand-primary">Payment</th>
+              <th className="px-4 py-3 font-semibold text-brand-primary">Status</th>
+              <th className="px-4 py-3 font-semibold text-brand-primary">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -147,22 +257,29 @@ export function OrdersListClient({
                   order.status === "pending" ? "bg-amber-50/40" : ""
                 }`}
               >
-                <td className="px-3 py-2">
+                <td className="px-4 py-3">
                   <span className="font-mono text-xs text-brand-text font-semibold">
                     {order.id.slice(-8)}
                   </span>
                 </td>
-                <td className="max-w-[200px] truncate px-3 py-2 text-brand-text/80">
-                  {order.userName ?? order.userEmail ?? "—"}
+                <td className="max-w-[180px] truncate px-4 py-3 text-brand-text/80">
+                  <span className="font-medium block text-brand-text truncate">
+                    {order.userName ?? "—"}
+                  </span>
+                  {order.userEmail && (
+                    <span className="text-xs text-brand-text/50 truncate block">
+                      {order.userEmail}
+                    </span>
+                  )}
                 </td>
-                <td className="px-3 py-2 text-xs text-brand-text/80">
+                <td className="px-4 py-3 text-xs text-brand-text/80">
                   {formatDate(order.createdAt)}
                 </td>
-                <td className="px-3 py-2 text-brand-text/80">{order.itemCount}</td>
-                <td className="px-3 py-2 font-medium text-brand-text">
+                <td className="px-4 py-3 text-brand-text/80">{order.itemCount}</td>
+                <td className="px-4 py-3 font-semibold text-brand-primary">
                   {formatMoney(order.total)}
                 </td>
-                <td className="px-3 py-2 text-xs text-brand-text/80">
+                <td className="px-4 py-3 text-xs text-brand-text/80">
                   <div className="flex items-center gap-1.5">
                     <span className="font-medium">
                       {order.paymentMethod === "UPI_QR"
@@ -179,7 +296,7 @@ export function OrdersListClient({
                     )}
                   </div>
                 </td>
-                <td className="px-3 py-2">
+                <td className="px-4 py-3">
                   <span
                     className={`inline-block rounded-full border px-2.5 py-0.5 text-xs font-medium ${
                       order.badgeColor ?? statusBadgeColor(order.status)
@@ -188,10 +305,14 @@ export function OrdersListClient({
                     {order.statusLabel}
                   </span>
                 </td>
-                <td className="px-3 py-2">
+                <td className="px-4 py-3">
                   <button
                     onClick={() => router.push(`/admin/orders/${order.id}`)}
-                    className="rounded-md bg-brand-primary/10 px-2.5 py-1 text-xs font-semibold text-brand-primary transition-colors hover:bg-brand-primary hover:text-white"
+                    className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
+                      order.status === "pending"
+                        ? "bg-amber-600 text-white hover:bg-amber-700 shadow-xs"
+                        : "bg-brand-primary/10 text-brand-primary hover:bg-brand-primary hover:text-white"
+                    }`}
                   >
                     {order.status === "pending" ? "Verify" : "View"}
                   </button>
@@ -200,7 +321,7 @@ export function OrdersListClient({
             ))}
             {orders.length === 0 && (
               <tr>
-                <td colSpan={8} className="px-3 py-8 text-center text-sm text-brand-text/40">
+                <td colSpan={8} className="px-4 py-8 text-center text-sm text-brand-text/40">
                   No orders found.
                 </td>
               </tr>
@@ -209,19 +330,20 @@ export function OrdersListClient({
         </table>
       </div>
 
+      {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="mt-4 flex items-center justify-center gap-2 text-sm">
+        <div className="flex items-center justify-center gap-3 pt-2 text-sm">
           <button
             disabled={page <= 1}
             onClick={() => {
               setPage((p) => p - 1);
               fetchOrders(search, statusFilter, page - 1);
             }}
-            className="rounded-lg px-3 py-1.5 text-brand-text/60 transition-colors hover:bg-brand-primary/5 disabled:opacity-30"
+            className="rounded-lg border border-brand-primary/15 bg-white px-4 py-2 text-xs font-semibold text-brand-text/70 transition-colors hover:border-brand-primary hover:text-brand-primary disabled:opacity-30 min-h-[38px]"
           >
-            Previous
+            &larr; Previous
           </button>
-          <span className="text-brand-text/60">
+          <span className="text-xs font-medium text-brand-text/60">
             Page {page} of {totalPages}
           </span>
           <button
@@ -230,9 +352,9 @@ export function OrdersListClient({
               setPage((p) => p + 1);
               fetchOrders(search, statusFilter, page + 1);
             }}
-            className="rounded-lg px-3 py-1.5 text-brand-text/60 transition-colors hover:bg-brand-primary/5 disabled:opacity-30"
+            className="rounded-lg border border-brand-primary/15 bg-white px-4 py-2 text-xs font-semibold text-brand-text/70 transition-colors hover:border-brand-primary hover:text-brand-primary disabled:opacity-30 min-h-[38px]"
           >
-            Next
+            Next &rarr;
           </button>
         </div>
       )}

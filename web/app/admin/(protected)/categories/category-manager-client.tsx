@@ -338,7 +338,7 @@ export function CategoryManagerClient({
           </svg>
         </div>
 
-        <div className="flex flex-wrap items-center gap-1.5">
+        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-1 -mx-2 px-2 sm:mx-0 sm:px-0">
           {[
             { id: "all", label: `All (${categories.length})` },
             { id: "women", label: `Women (${womenCount})` },
@@ -349,9 +349,9 @@ export function CategoryManagerClient({
               key={tab.id}
               type="button"
               onClick={() => setGenderFilter(tab.id)}
-              className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
+              className={`rounded-lg px-3.5 py-2 text-xs font-semibold whitespace-nowrap transition-colors min-h-[36px] ${
                 genderFilter === tab.id
-                  ? "bg-brand-primary text-white"
+                  ? "bg-brand-primary text-white shadow-xs"
                   : "bg-brand-primary/5 text-brand-text/70 hover:bg-brand-primary/10"
               }`}
             >
@@ -445,44 +445,46 @@ export function CategoryManagerClient({
                 </div>
 
                 {/* Right: Actions */}
-                <div className="flex items-center gap-2 self-end sm:self-center shrink-0">
+                <div className="flex items-center gap-2 self-stretch sm:self-center justify-between sm:justify-end shrink-0 pt-2.5 sm:pt-0 border-t sm:border-t-0 border-brand-primary/10">
                   <Link
                     href={`/shop/${cat.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 rounded-lg border border-brand-primary/15 px-2.5 py-1.5 text-xs font-medium text-brand-text/70 transition-colors hover:border-brand-primary hover:text-brand-primary"
+                    className="inline-flex items-center gap-1 rounded-lg border border-brand-primary/15 px-3 py-1.5 text-xs font-semibold text-brand-text/70 transition-colors hover:border-brand-primary hover:text-brand-primary min-h-[36px]"
                     title="View on storefront"
                   >
                     <span>Store</span>
-                    <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                   </Link>
 
-                  <button
-                    type="button"
-                    onClick={() => openEditModal(cat)}
-                    className="inline-flex items-center gap-1 rounded-lg border border-brand-primary/15 bg-white px-3 py-1.5 text-xs font-semibold text-brand-primary shadow-xs transition-colors hover:bg-brand-primary/5 hover:border-brand-gold"
-                  >
-                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
-                    Edit
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => openEditModal(cat)}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-brand-primary/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-brand-primary shadow-2xs transition-colors hover:bg-brand-primary/5 hover:border-brand-gold min-h-[36px]"
+                    >
+                      <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                      </svg>
+                      Edit
+                    </button>
 
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setDeleteError("");
-                      setDeletingCategory(cat);
-                    }}
-                    className="inline-flex items-center rounded-lg border border-red-200 p-1.5 text-red-600 transition-colors hover:bg-red-50 hover:border-red-300"
-                    title="Delete category"
-                  >
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                  </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setDeleteError("");
+                        setDeletingCategory(cat);
+                      }}
+                      className="inline-flex items-center justify-center rounded-lg border border-red-200 p-2 text-red-600 transition-colors hover:bg-red-50 hover:border-red-300 min-h-[36px] min-w-[36px]"
+                      title="Delete category"
+                    >
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -497,7 +499,7 @@ export function CategoryManagerClient({
           role="dialog"
           aria-modal="true"
         >
-          <div className="relative w-full max-w-lg rounded-2xl border border-brand-primary/15 bg-brand-bg p-6 shadow-2xl">
+          <div className="relative w-full max-w-lg rounded-2xl border border-brand-primary/15 bg-brand-bg p-4 sm:p-6 shadow-2xl max-h-[92vh] overflow-y-auto">
             {/* Modal Header */}
             <div className="flex items-center justify-between border-b border-brand-primary/10 pb-4">
               <div>
@@ -725,7 +727,7 @@ export function CategoryManagerClient({
           role="dialog"
           aria-modal="true"
         >
-          <div className="relative w-full max-w-md rounded-2xl border border-brand-primary/15 bg-brand-bg p-6 shadow-2xl">
+          <div className="relative w-full max-w-md rounded-2xl border border-brand-primary/15 bg-brand-bg p-4 sm:p-6 shadow-2xl max-h-[92vh] overflow-y-auto">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-600">
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

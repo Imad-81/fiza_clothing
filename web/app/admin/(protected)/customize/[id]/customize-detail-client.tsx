@@ -105,17 +105,17 @@ export function CustomizeDetailClient({
 
   return (
     <div>
-      <div className="flex flex-wrap items-end justify-between gap-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
-          <h1 className="font-display text-3xl font-bold text-brand-primary">
+          <h1 className="font-display text-2xl sm:text-3xl font-bold text-brand-primary">
             {initialData.garment}
           </h1>
           <p className="mt-1 font-mono text-xs text-brand-text/60">
-            {initialData.id}
+            Brief ID: {initialData.id}
           </p>
         </div>
         <span
-          className={`inline-block rounded-full border px-2.5 py-0.5 text-xs font-medium ${initialData.badgeColor}`}
+          className={`inline-block rounded-full border px-3 py-1 text-xs font-semibold ${initialData.badgeColor}`}
         >
           {initialData.statusLabel}
         </span>
@@ -283,7 +283,7 @@ export function CustomizeDetailClient({
             <p className="text-sm text-red-600">{serverError}</p>
           )}
 
-          <div className="flex items-center gap-3 pt-1">
+          <div className="pt-2">
             <button
               type="submit"
               disabled={
@@ -292,7 +292,7 @@ export function CustomizeDetailClient({
                   quotedPrice === (initialData.quotedPrice?.toString() ?? "") &&
                   adminNotes === (initialData.adminNotes ?? ""))
               }
-              className="rounded-lg bg-brand-primary px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-primary/90 disabled:opacity-60"
+              className="w-full sm:w-auto rounded-lg bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-brand-primary/90 disabled:opacity-60 min-h-[44px]"
             >
               {saving ? "Saving…" : "Save Changes"}
             </button>

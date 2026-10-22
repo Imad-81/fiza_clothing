@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import type { Prisma } from "@/generated/prisma/client";
 import { prisma } from "@/lib/prisma";
 import { ProductListClient } from "./product-list-client";
@@ -61,17 +62,20 @@ export default async function AdminProductsPage({
     <div>
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-3xl font-bold text-brand-primary">
+          <h1 className="font-display text-2xl sm:text-3xl font-bold text-brand-primary">
             Products
           </h1>
           <p className="mt-1 text-sm text-brand-text/60">{total} total</p>
         </div>
-        <a
+        <Link
           href="/admin/products/new"
-          className="rounded-lg bg-brand-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-primary/90"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-brand-primary px-4 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-brand-primary/90 min-h-[42px]"
         >
-          Add Product
-        </a>
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+          </svg>
+          <span>Add Product</span>
+        </Link>
       </div>
 
       <Suspense fallback={<div className="mt-6 p-8 text-center text-sm text-brand-text/60">Loading products…</div>}>

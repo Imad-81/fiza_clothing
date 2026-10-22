@@ -118,18 +118,18 @@ export function SettingsClient({ initialPayment }: SettingsClientProps) {
 
       <form onSubmit={handleSave} className="space-y-8">
         {/* QR Code Section */}
-        <section className="rounded-2xl border border-brand-primary/15 bg-brand-bg p-6">
-          <div className="flex flex-wrap items-center justify-between gap-4">
+        <section className="rounded-2xl border border-brand-primary/15 bg-brand-bg p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <h2 className="font-display text-lg font-bold text-brand-primary">
                 Payment QR Code
               </h2>
-              <p className="mt-1 text-sm text-brand-text/60">
+              <p className="mt-1 text-xs sm:text-sm text-brand-text/60">
                 This QR code is displayed to customers at checkout for UPI
                 payments.
               </p>
             </div>
-            <div>
+            <div className="w-full sm:w-auto">
               <input
                 ref={fileInputRef}
                 type="file"
@@ -141,7 +141,7 @@ export function SettingsClient({ initialPayment }: SettingsClientProps) {
                 type="button"
                 disabled={uploading}
                 onClick={() => fileInputRef.current?.click()}
-                className="rounded-lg bg-brand-primary px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-brand-primary/90 disabled:opacity-60"
+                className="w-full sm:w-auto rounded-lg bg-brand-primary px-4 py-2.5 text-xs font-semibold text-white shadow-xs transition-colors hover:bg-brand-primary/90 disabled:opacity-60 min-h-[42px]"
               >
                 {uploading ? "Uploading to S3..." : "Upload New QR to S3"}
               </button>
@@ -250,11 +250,11 @@ export function SettingsClient({ initialPayment }: SettingsClientProps) {
         </section>
 
         {/* Save Button */}
-        <div className="flex justify-end gap-3">
+        <div className="flex justify-end pt-2">
           <button
             type="submit"
             disabled={saving || uploading}
-            className="rounded-xl bg-brand-primary px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-brand-primary/90 hover:shadow-md disabled:opacity-60"
+            className="w-full sm:w-auto rounded-xl bg-brand-primary px-8 py-3 text-sm font-semibold text-white shadow-xs transition-all hover:bg-brand-primary/90 hover:shadow-md disabled:opacity-60 min-h-[46px]"
           >
             {saving ? "Saving Changes..." : "Save Settings"}
           </button>

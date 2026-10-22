@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 
-export function AdminSignOut() {
+export function AdminSignOut({ className }: { className?: string }) {
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -16,7 +16,10 @@ export function AdminSignOut() {
     <button
       type="button"
       onClick={handleSignOut}
-      className="text-left text-sm font-medium text-brand-text/50 transition-colors hover:text-brand-primary"
+      className={
+        className ??
+        "text-left text-sm font-medium text-brand-text/50 transition-colors hover:text-brand-primary"
+      }
     >
       Sign out
     </button>
