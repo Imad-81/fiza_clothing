@@ -41,7 +41,14 @@ export type ProductCardSelect = Prisma.ProductGetPayload<{
 }>;
 
 export type CategorySelect = Prisma.CategoryGetPayload<{
-  select: { id: true; name: true; slug: true; gender: true };
+  select: {
+    id: true;
+    name: true;
+    slug: true;
+    gender: true;
+    description: true;
+    image: true;
+  };
 }>;
 
 const SORT_MAP: Record<string, Prisma.ProductOrderByWithRelationInput> = {
@@ -109,8 +116,13 @@ export async function fetchProducts(
   }
 
   if (params.gender) {
+    const targetGender = params.gender.toLowerCase();
     const names = categories
-      .filter((c) => c.gender === params.gender)
+      .filter(
+        (c) =>
+          c.gender.toLowerCase() === targetGender ||
+          c.gender.toLowerCase() === "unisex",
+      )
       .map((c) => c.name);
     if (names.length > 0) conditions.push({ category: { in: names } });
   }
@@ -123,7 +135,12 @@ export async function fetchProducts(
   }
 
   if (params.subCategory && params.subCategory.length > 0) {
-    conditions.push({ subCategory: { in: params.subCategory } });
+    conditions.push({
+      OR: [
+        { category: { in: params.subCategory } },
+        { subCategory: { in: params.subCategory } },
+      ],
+    });
   }
 
   if (params.minPrice !== undefined || params.maxPrice !== undefined) {
@@ -241,7 +258,14 @@ export async function fetchRelatedProducts(
 
 export async function fetchAllCategories(): Promise<CategorySelect[]> {
   return prisma.category.findMany({
-    select: { id: true, name: true, slug: true, gender: true },
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      gender: true,
+      description: true,
+      image: true,
+    },
     orderBy: { name: "asc" },
   });
 }

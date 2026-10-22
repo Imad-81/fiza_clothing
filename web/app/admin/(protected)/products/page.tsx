@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
+import type { Prisma } from "@/generated/prisma/client";
 import { prisma } from "@/lib/prisma";
 import { ProductListClient } from "./product-list-client";
 
@@ -8,16 +10,33 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default async function AdminProductsPage() {
+interface AdminProductsPageProps {
+  searchParams: Promise<{ q?: string }>;
+}
+
+export default async function AdminProductsPage({
+  searchParams,
+}: AdminProductsPageProps) {
+  const { q } = await searchParams;
+  const search = q?.trim();
+
+  const where: Prisma.ProductWhereInput = { deletedAt: null };
+  if (search && search.length >= 2) {
+    where.OR = [
+      { name: { contains: search, mode: "insensitive" } },
+      { description: { contains: search, mode: "insensitive" } },
+      { category: { contains: search, mode: "insensitive" } },
+      { subCategory: { contains: search, mode: "insensitive" } },
+    ];
+  }
+
   const [rows, total] = await Promise.all([
     prisma.product.findMany({
-      where: { deletedAt: null },
+      where,
       orderBy: { createdAt: "desc" },
       take: 20,
     }),
-    prisma.product.count({
-      where: { deletedAt: null },
-    }),
+    prisma.product.count({ where }),
   ]);
 
   type RawProduct = typeof rows extends (infer U)[] ? U : never;
@@ -55,7 +74,14 @@ export default async function AdminProductsPage() {
         </a>
       </div>
 
-      <ProductListClient initialProducts={products} initialTotal={total} />
+      <Suspense fallback={<div className="mt-6 p-8 text-center text-sm text-brand-text/60">Loading products…</div>}>
+        <ProductListClient
+          key={search ?? "all"}
+          initialProducts={products}
+          initialTotal={total}
+          initialQuery={search ?? ""}
+        />
+      </Suspense>
     </div>
   );
 }

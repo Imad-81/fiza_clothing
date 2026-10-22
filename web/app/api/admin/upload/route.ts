@@ -11,6 +11,25 @@ interface UploadFileEntry {
 }
 
 const handleUpload = async (req: Request) => {
+  const contentType = req.headers.get("content-type") || "";
+
+  if (contentType.includes("multipart/form-data")) {
+    const formData = await req.formData();
+    const file = formData.get("file") as File | null;
+    if (!file) {
+      return errorResponse("No file provided", 400);
+    }
+    const adapter = getUploadAdapter();
+    const publicUrl = await adapter.save(file, file.name);
+    return NextResponse.json({
+      success: true,
+      data: {
+        publicUrl,
+        paths: [{ key: publicUrl, uploadUrl: "", publicUrl }],
+      },
+    });
+  }
+
   const body = (await req.json()) as { files?: UploadFileEntry[] };
 
   if (!body.files || body.files.length === 0) {

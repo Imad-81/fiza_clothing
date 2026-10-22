@@ -66,14 +66,14 @@ export default function Navbar() {
   const womenSubcategories =
     dbCategories.length > 0
       ? dbCategories
-          .filter((c) => c.gender?.toLowerCase() === "women")
+          .filter((c) => c.gender?.toLowerCase() === "women" || c.gender?.toLowerCase() === "unisex")
           .map((c) => ({ label: c.name, href: `/shop/${c.slug}` }))
       : defaultWomenSubcategories;
 
   const menSubcategories =
     dbCategories.length > 0
       ? dbCategories
-          .filter((c) => c.gender?.toLowerCase() === "men")
+          .filter((c) => c.gender?.toLowerCase() === "men" || c.gender?.toLowerCase() === "unisex")
           .map((c) => ({ label: c.name, href: `/shop/${c.slug}` }))
       : defaultMenSubcategories;
 

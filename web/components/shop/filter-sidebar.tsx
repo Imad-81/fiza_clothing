@@ -82,8 +82,20 @@ export default function FilterSidebar({
   };
 
   const visibleCategories = gender
-    ? categories.filter((c) => c.gender === gender)
+    ? categories.filter(
+        (c) =>
+          c.gender?.toLowerCase() === gender.toLowerCase() ||
+          c.gender?.toLowerCase() === "unisex",
+      )
     : categories;
+
+  const availableGenders = [
+    "women",
+    "men",
+    ...(categories.some((c) => c.gender?.toLowerCase() === "unisex")
+      ? ["unisex"]
+      : []),
+  ];
 
   const hasActiveFilters =
     !!gender ||
@@ -106,10 +118,10 @@ export default function FilterSidebar({
       {/* Gender */}
       <div>
         <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-brand-text/50">
-          Gender
+          Department
         </h3>
         <div className="flex flex-wrap gap-2">
-          {["women", "men"].map((g) => {
+          {availableGenders.map((g) => {
             const active = gender === g;
             return (
               <button

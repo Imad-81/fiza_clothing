@@ -147,6 +147,7 @@ export function CategoryManagerClient({
     setServerError("");
 
     try {
+      // 1. Try S3 presigned upload
       const presignRes = await fetch("/api/admin/upload", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -156,24 +157,37 @@ export function CategoryManagerClient({
       });
 
       const presignJson = await presignRes.json();
-      if (!presignJson.success || !presignJson.data?.paths?.[0]) {
-        setServerError(presignJson.message || "Failed to get upload signature");
+      if (presignJson.success && presignJson.data?.paths?.[0]?.uploadUrl) {
+        const { uploadUrl, publicUrl } = presignJson.data.paths[0];
+        const putRes = await fetch(uploadUrl, {
+          method: "PUT",
+          body: file,
+          headers: { "Content-Type": file.type },
+        });
+
+        if (putRes.ok) {
+          setForm((prev) => ({ ...prev, image: publicUrl }));
+          return;
+        }
+      }
+
+      // 2. Fallback to direct multipart/form-data upload (local dev or direct adapter)
+      const formData = new FormData();
+      formData.append("file", file);
+      const directRes = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      const directJson = await directRes.json();
+      if (directJson.success && directJson.data?.publicUrl) {
+        setForm((prev) => ({ ...prev, image: directJson.data.publicUrl }));
         return;
       }
 
-      const { uploadUrl, publicUrl } = presignJson.data.paths[0];
-
-      const putRes = await fetch(uploadUrl, {
-        method: "PUT",
-        body: file,
-        headers: { "Content-Type": file.type },
-      });
-
-      if (putRes.ok) {
-        setForm((prev) => ({ ...prev, image: publicUrl }));
-      } else {
-        setServerError(`Failed to upload file (${putRes.status})`);
-      }
+      setServerError(
+        directJson.message || presignJson.message || "Failed to upload image. You can also paste an image URL directly.",
+      );
     } catch {
       setServerError("Network error while uploading image");
     } finally {
@@ -187,6 +201,13 @@ export function CategoryManagerClient({
     setServerError("");
     setFieldErrors({});
 
+    const sanitizedSlug = slugify(form.slug || form.name);
+    const payload = {
+      ...form,
+      name: form.name.trim(),
+      slug: sanitizedSlug,
+    };
+
     try {
       const url = editingCategory
         ? `/api/admin/categories/${editingCategory.id}`
@@ -196,7 +217,7 @@ export function CategoryManagerClient({
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
 
       const json = await res.json();

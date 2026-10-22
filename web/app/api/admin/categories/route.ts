@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/api-require-admin";
 import { withErrorHandler } from "@/lib/with-error-handler";
@@ -88,6 +89,16 @@ const createCategory = async (req: Request) => {
       image,
     },
   });
+
+  try {
+    revalidatePath("/");
+    revalidatePath("/shop");
+    revalidatePath(`/shop/${slug}`);
+    revalidatePath("/admin/categories");
+    revalidatePath("/admin/products");
+  } catch {
+    // Non-fatal
+  }
 
   return successResponse(category, 201);
 };

@@ -14,6 +14,7 @@ import { useIsMounted } from "@/lib/hooks/use-is-mounted";
 interface ProductGridClientProps {
   basePath: string;
   title: string;
+  description?: string | null;
   initialProducts: ProductCardSelect[];
   initialPagination: PaginationMeta;
   categories: CategorySelect[];
@@ -23,6 +24,7 @@ interface ProductGridClientProps {
 export default function ProductGridClient({
   basePath,
   title,
+  description,
   initialProducts,
   initialPagination,
   categories,
@@ -101,6 +103,11 @@ export default function ProductGridClient({
         <p className="mt-1 text-xs text-brand-text/60 sm:mt-2 sm:text-sm">
           {pagination.total} {pagination.total === 1 ? "product" : "products"} found
         </p>
+        {description && (
+          <p className="mt-2.5 max-w-2xl text-sm text-brand-text/75 sm:text-base leading-relaxed">
+            {description}
+          </p>
+        )}
       </div>
 
       <Suspense>

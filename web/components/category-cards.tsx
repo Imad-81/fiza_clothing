@@ -36,7 +36,7 @@ export default async function CategoryCards() {
             </h2>
           </div>
           <p className="reveal-sub max-w-sm font-serif text-lg italic leading-relaxed text-[#2B2325]/70 lg:pb-2 lg:text-right">
-            Six signature edits — from everyday chic kurtis to celebration-ready silhouettes.
+            Curated signature edits — from everyday chic kurtis to celebration-ready silhouettes.
           </p>
         </div>
 
@@ -52,13 +52,21 @@ export default async function CategoryCards() {
               data-cursor-expand="true"
               data-cursor-label="Shop"
             >
-              <Image
-                src={cat.image ?? ""}
-                alt={cat.name}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 58vw"
-                className="object-cover transition-all duration-700 ease-out group-hover:scale-[1.06] group-hover:[object-position:80%_50%]"
-              />
+              {cat.image ? (
+                <Image
+                  src={cat.image}
+                  alt={cat.name}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 58vw"
+                  className="object-cover transition-all duration-700 ease-out group-hover:scale-[1.06] group-hover:[object-position:80%_50%]"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#EEDCD8] via-[#E5C0BA]/40 to-[#1F191B]/20">
+                  <span className="font-display text-4xl font-bold text-[#1F191B]/20">
+                    {cat.name.slice(0, 2).toUpperCase()}
+                  </span>
+                </div>
+              )}
 
               <div className="absolute inset-0 bg-gradient-to-t from-[#1F191B]/85 via-[#1F191B]/20 to-transparent transition-opacity duration-500 group-hover:opacity-90" />
 

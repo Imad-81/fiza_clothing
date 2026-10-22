@@ -32,16 +32,23 @@ export async function generateMetadata({
     return { title: { absolute: "Category Not Found | Style By Fiza" } };
   }
 
+  const desc =
+    category.description ||
+    `Browse our ${category.name} collection. Filter by price and availability.`;
+
   return {
     title: category.name,
-    description: `Browse our ${category.name} collection. Filter by price and availability.`,
+    description: desc,
     openGraph: {
       title: `${category.name} | Style By Fiza`,
-      description: `Browse our ${category.name} collection. Filter by price and availability.`,
+      description: desc,
+      ...(category.image && { images: [{ url: category.image, alt: category.name }] }),
     },
     twitter: {
       card: "summary_large_image",
       title: `${category.name} | Style By Fiza`,
+      description: desc,
+      ...(category.image && { images: [category.image] }),
     },
     alternates: {
       canonical: `/shop/${subcategory}`,
@@ -90,13 +97,15 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         ])}
       />
       <ProductGridClient
-      key={filterKey}
-      basePath={`/shop/${subcategory}`}
-      title={category.name}
-      initialProducts={products as ProductCardSelect[]}
-      initialPagination={pagination as PaginationMeta}
-      categories={categories as CategorySelect[]}
-      fixedParams={{ subCategory: category.name }}
-    />
-    </>);
+        key={filterKey}
+        basePath={`/shop/${subcategory}`}
+        title={category.name}
+        description={category.description}
+        initialProducts={products as ProductCardSelect[]}
+        initialPagination={pagination as PaginationMeta}
+        categories={categories as CategorySelect[]}
+        fixedParams={{ subCategory: category.name }}
+      />
+    </>
+  );
 }

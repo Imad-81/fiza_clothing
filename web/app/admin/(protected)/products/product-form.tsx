@@ -323,7 +323,13 @@ export function ProductForm({ mode, initialData, productId }: ProductFormProps) 
         <select
           id="category"
           value={form.category}
-          onChange={(e) => set("category", e.target.value)}
+          onChange={(e) => {
+            const selected = e.target.value;
+            set("category", selected);
+            if (!form.subCategory || form.subCategory === form.category) {
+              set("subCategory", selected);
+            }
+          }}
           className="w-full rounded-lg border border-brand-primary/15 bg-brand-bg px-4 py-2.5 text-sm text-brand-text outline-none transition-colors focus:border-brand-gold"
         >
           <option value="">Select a category</option>
@@ -348,6 +354,7 @@ export function ProductForm({ mode, initialData, productId }: ProductFormProps) 
           type="text"
           value={form.subCategory}
           onChange={(e) => set("subCategory", e.target.value)}
+          placeholder={form.category ? `e.g. ${form.category}` : "e.g. Casual, Festive"}
           className="w-full rounded-lg border border-brand-primary/15 bg-brand-bg px-4 py-2.5 text-sm text-brand-text outline-none transition-colors focus:border-brand-gold"
         />
       </div>

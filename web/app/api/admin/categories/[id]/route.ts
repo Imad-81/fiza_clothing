@@ -131,6 +131,7 @@ const updateCategory = async (req: Request, context?: RouteContext) => {
   }
 
   try {
+    revalidatePath("/");
     revalidatePath("/shop");
     revalidatePath(`/shop/${existing.slug}`);
     revalidatePath(`/shop/${slug}`);
@@ -178,6 +179,7 @@ const deleteCategory = async (req: Request, context?: RouteContext) => {
   });
 
   try {
+    revalidatePath("/");
     revalidatePath("/shop");
     revalidatePath(`/shop/${existing.slug}`);
     revalidatePath("/admin/categories");

@@ -22,18 +22,20 @@ interface Product {
 interface ProductListClientProps {
   initialProducts: Product[];
   initialTotal: number;
+  initialQuery?: string;
 }
 
 export function ProductListClient({
   initialProducts,
   initialTotal,
+  initialQuery = "",
 }: ProductListClientProps) {
   const router = useRouter();
   const [products, setProducts] = useState<Product[]>(initialProducts);
   const [total, setTotal] = useState(initialTotal);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(initialQuery);
 
   const limit = 20;
 
